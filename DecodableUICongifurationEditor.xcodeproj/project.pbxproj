@@ -11,6 +11,9 @@
 		79419442282179FC00DB9FA3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79419441282179FC00DB9FA3 /* ContentView.swift */; };
 		7941944428217A0000DB9FA3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7941944328217A0000DB9FA3 /* Assets.xcassets */; };
 		7941944728217A0000DB9FA3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7941944628217A0000DB9FA3 /* Preview Assets.xcassets */; };
+		795707762822AC8D0038C019 /* AppColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795707752822AC8D0038C019 /* AppColor.swift */; };
+		795FD34528241ED4002151F8 /* DecodableUI in Frameworks */ = {isa = PBXBuildFile; productRef = 795FD34428241ED4002151F8 /* DecodableUI */; };
+		79728AEA2822A22900B4D905 /* FocusableTextFIeld.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79728AE92822A22900B4D905 /* FocusableTextFIeld.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +23,9 @@
 		7941944328217A0000DB9FA3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7941944628217A0000DB9FA3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		7941944828217A0000DB9FA3 /* DecodableUICongifurationEditor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DecodableUICongifurationEditor.entitlements; sourceTree = "<group>"; };
+		795707752822AC8D0038C019 /* AppColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColor.swift; sourceTree = "<group>"; };
+		795FD34228241EC7002151F8 /* DecodableUI */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = DecodableUI; path = ../DecodableUI; sourceTree = "<group>"; };
+		79728AE92822A22900B4D905 /* FocusableTextFIeld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusableTextFIeld.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -27,6 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				795FD34528241ED4002151F8 /* DecodableUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -36,8 +43,10 @@
 		79419433282179FB00DB9FA3 = {
 			isa = PBXGroup;
 			children = (
+				795FD34128241EC6002151F8 /* Packages */,
 				7941943E282179FC00DB9FA3 /* DecodableUICongifurationEditor */,
 				7941943D282179FB00DB9FA3 /* Products */,
+				795FD34328241ED4002151F8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -57,6 +66,8 @@
 				7941944328217A0000DB9FA3 /* Assets.xcassets */,
 				7941944828217A0000DB9FA3 /* DecodableUICongifurationEditor.entitlements */,
 				7941944528217A0000DB9FA3 /* Preview Content */,
+				79728AE92822A22900B4D905 /* FocusableTextFIeld.swift */,
+				795707752822AC8D0038C019 /* AppColor.swift */,
 			);
 			path = DecodableUICongifurationEditor;
 			sourceTree = "<group>";
@@ -67,6 +78,21 @@
 				7941944628217A0000DB9FA3 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		795FD34128241EC6002151F8 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				795FD34228241EC7002151F8 /* DecodableUI */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		795FD34328241ED4002151F8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -85,6 +111,9 @@
 			dependencies = (
 			);
 			name = DecodableUICongifurationEditor;
+			packageProductDependencies = (
+				795FD34428241ED4002151F8 /* DecodableUI */,
+			);
 			productName = DecodableUICongifurationEditor;
 			productReference = 7941943C282179FB00DB9FA3 /* DecodableUICongifurationEditor.app */;
 			productType = "com.apple.product-type.application";
@@ -139,6 +168,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79728AEA2822A22900B4D905 /* FocusableTextFIeld.swift in Sources */,
+				795707762822AC8D0038C019 /* AppColor.swift in Sources */,
 				79419442282179FC00DB9FA3 /* ContentView.swift in Sources */,
 				79419440282179FC00DB9FA3 /* DecodableUICongifurationEditorApp.swift in Sources */,
 			);
@@ -198,7 +229,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 11.6;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -253,7 +284,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 11.6;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
@@ -281,6 +312,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pavlovskyive.DecodableUICongifurationEditor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -308,6 +340,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pavlovskyive.DecodableUICongifurationEditor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -338,6 +371,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		795FD34428241ED4002151F8 /* DecodableUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DecodableUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 79419434282179FB00DB9FA3 /* Project object */;
 }
