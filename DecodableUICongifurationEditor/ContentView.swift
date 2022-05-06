@@ -9,8 +9,11 @@ import SwiftUI
 import Combine
 import DecodableUI
 
-class InputHandler: ObservableObject {
-
+class DecodableUIProvider: ObservableObject {
+    
+    private let viewsService: DecodableViewsService
+    
+    @Published var view: AnyView? = nil
     @Published var input =
     """
     {
@@ -24,129 +27,6 @@ class InputHandler: ObservableObject {
     \t}
     }
     """
-    
-    @Published var formattedInput = ""
-
-    private var cancellables = Set<AnyCancellable>()
-    
-    init() {
-        formattedLines
-            .map { lines in
-                lines.joined(separator: "\n")
-            }
-            .assign(to: \.formattedInput, on: self)
-            .store(in: &cancellables)
-        
-        $formattedInput
-            .assign(to: \.input, on: self)
-            .store(in: &cancellables)
-    }
-    
-    var formattedLines: AnyPublisher<[String], Never> {
-        inputLinesPublisher
-            .removeDuplicates()
-            .withPrevious()
-            .map { previous, current -> [String] in
-                typealias ChangedLine = (offset: Int, value: String)
-                
-                print("new lines arrives")
-                
-                guard let previous = previous else {
-                    print("first time here")
-                    return current
-                }
-                
-                // Format lines
-                
-                var mutable = current
-                
-                let difference = current.difference(from: previous)
-
-                guard !difference.isEmpty else {
-                    return current
-                }
-
-                var insertionChange: ChangedLine?
-                var removalChange: ChangedLine?
-
-                // Getting first changes
-                for change in difference {
-                    switch change {
-                    case .insert(let offset, let value, _):
-                        insertionChange = ChangedLine(offset: offset, value: value)
-                    case .remove(let offset, let value, _):
-                        removalChange = ChangedLine(offset: offset, value: value)
-                    }
-                }
-
-
-                // On new line
-                if let insertionChange = insertionChange {
-                    var newlineOffset = insertionChange.offset
-
-                    guard newlineOffset != removalChange?.offset else {
-                        return mutable
-                    }
-
-                    // Remove previous line if its empty
-                    let previousLineOffset = newlineOffset - 1
-
-                    if let previousLine = mutable[safe: previousLineOffset],
-                       previousLine.isEmpty {
-                        mutable.remove(at: previousLineOffset)
-                        newlineOffset = previousLineOffset
-                    }
-
-                    // Add tabulation
-                    let depth = self.lineDepth(lineOffset: newlineOffset, lines: mutable)
-                    let tabulation = Array(repeating: "\t", count: depth).joined()
-
-                    mutable[newlineOffset].insert(
-                        contentsOf: tabulation,
-                        at:  mutable[newlineOffset].startIndex
-                    )
-                }
-
-                return mutable
-            }
-            .eraseToAnyPublisher()
-    }
-    
-    var inputLinesPublisher: AnyPublisher<[String], Never> {
-        $input
-            .removeDuplicates()
-            .filter { input in
-                input != self.formattedInput
-            }
-            .map { input in
-                print("New input arrives")
-                return input.components(separatedBy: CharacterSet.newlines)
-            }
-            .eraseToAnyPublisher()
-    }
-    
-    private func lineDepth(lineOffset: Int, lines: [String]) -> Int {
-        let openingCharacters: [Character] = ["{", "["]
-        let closingCharacters: [Character] = ["}", "]"]
-
-        return lines[...lineOffset]
-            .map { line -> Int in
-                let openingsCount = Array(line).filter { openingCharacters.contains($0) }.count
-                let closingsCount = Array(line).filter { closingCharacters.contains($0) }.count
-                
-                return openingsCount - closingsCount
-            }
-            .reduce(0, +)
-    }
-
-}
-
-class DecodableUIProvider: ObservableObject {
-    
-    private let viewsService: DecodableViewsService
-    
-    @Published var view: AnyView? = nil
-    @Published var input: String = ""
     
     @Published var configuration: DecodableViewConfiguration?
     
@@ -166,8 +46,8 @@ class DecodableUIProvider: ObservableObject {
     
     var configurationPublisher: AnyPublisher<DecodableViewConfiguration?, Never> {
         $input
-            .dropFirst()
             .debounce(for: .seconds(0.5), scheduler: DispatchQueue.main)
+            .removeDuplicates()
             .compactMap {
                 $0.data(using: .utf8)
             }
@@ -178,17 +58,11 @@ class DecodableUIProvider: ObservableObject {
             }
             .eraseToAnyPublisher()
     }
-    
-    func subscribeToInput(_ inputPublisher: Published<String>.Publisher) {
-        inputPublisher
-            .assign(to: &$input)
-    }
-    
+
 }
 
 struct ContentView: View {
-    
-    @StateObject var inputHandler = InputHandler()
+
     @StateObject var uiProvider = DecodableUIProvider(viewTypes: [
         "Label": LabelView<DefaultViewModifier>.self,
         "Image": ImageView<DefaultViewModifier>.self,
@@ -204,14 +78,10 @@ struct ContentView: View {
             .frame(minWidth: 300, minHeight: 600)
         }
         .frame(idealWidth: 900, maxWidth: .infinity, maxHeight: .infinity)
-        .onAppear {
-            uiProvider.subscribeToInput(inputHandler.$input)
-        }
     }
     
     private var codeEditor: some View {
-        MacEditorv2(text: $inputHandler.input,
-                    formattedText: $inputHandler.formattedInput)
+        TextEditor(text: $uiProvider.input)
             .padding()
             .background(Color("Editor"))
             .frame(minWidth: 600, maxWidth: .infinity, minHeight: 300, maxHeight: .infinity)
@@ -226,7 +96,7 @@ struct ContentView_Previews: PreviewProvider {
 }
 
 
-private extension CharacterSet {
+extension CharacterSet {
     
     func containsUnicodeScalars(of character: Character) -> Bool {
         character.unicodeScalars.allSatisfy(contains(_:))
@@ -246,12 +116,4 @@ extension Publisher {
         .eraseToAnyPublisher()
     }
     
-}
-
-extension Collection {
-
-    /// Returns the element at the specified index if it is within bounds, otherwise nil.
-    subscript (safe index: Index) -> Element? {
-        return indices.contains(index) ? self[index] : nil
-    }
 }
