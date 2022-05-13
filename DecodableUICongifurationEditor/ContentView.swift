@@ -13,7 +13,7 @@ class DecodableUIProvider: ObservableObject {
     
     private let viewsService: DecodableViewsService
     
-    @Published var view: AnyView? = nil
+    @Published var view: AnyView? = AnyView(ProgressView().progressViewStyle(.circular))
     @Published var input =
     """
     {
@@ -36,9 +36,19 @@ class DecodableUIProvider: ObservableObject {
         self.viewsService = DecodableViewsService(viewTypes: viewTypes)
 
         configurationPublisher
-            .compactMap { $0 }
             .compactMap { configuration in
-                self.viewsService.resolve(from: configuration)?.anyView
+                if configuration == nil {
+                    self.view = AnyView(ProgressView().progressViewStyle(.circular))
+                }
+                
+                return configuration
+            }
+            .compactMap { (configuration: DecodableViewConfiguration) -> AnyView? in
+                let view = self.viewsService.resolve(from: configuration)?.anyView
+                if view == nil {
+                    self.view = AnyView(Image(systemName: "exclamationmark.triangle"))
+                }
+                return view
             }
             .assign(to: \.view, on: self)
             .store(in: &cancellables)
@@ -46,7 +56,7 @@ class DecodableUIProvider: ObservableObject {
     
     var configurationPublisher: AnyPublisher<DecodableViewConfiguration?, Never> {
         $input
-            .debounce(for: .seconds(0.5), scheduler: DispatchQueue.main)
+            .debounce(for: .seconds(1), scheduler: DispatchQueue.main)
             .removeDuplicates()
             .compactMap {
                 $0.data(using: .utf8)
@@ -70,21 +80,26 @@ struct ContentView: View {
     ])
     
     var body: some View {
-        HStack {
+        HSplitView {
             codeEditor
             Group {
                 uiProvider.view
+                    .frame(minWidth: 300, maxWidth: .infinity, minHeight: 600, maxHeight: .infinity)
+                    .animation(.easeInOut)
             }
-            .frame(minWidth: 300, minHeight: 600)
+            .background(Color.white)
+            .cornerRadius(40)
+            .padding()
         }
-        .frame(idealWidth: 900, maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color("Editor"))
+
     }
     
     private var codeEditor: some View {
         TextEditor(text: $uiProvider.input)
             .padding()
-            .background(Color("Editor"))
-            .frame(minWidth: 600, maxWidth: .infinity, minHeight: 300, maxHeight: .infinity)
+            .frame(minWidth: 600, maxWidth: .infinity, minHeight: 600, maxHeight: .infinity)
+            
     }
     
 }
