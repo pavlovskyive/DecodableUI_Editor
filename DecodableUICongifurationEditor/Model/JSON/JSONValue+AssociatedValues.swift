@@ -43,4 +43,21 @@ extension JSONValue {
         }
     }
     
+    // MARK: - .object
+    
+    var objectValue: [JSONRow] {
+        get {
+            guard case let .object(value) = self else {
+                return []
+            }
+            return value
+        }
+        set {
+            guard case .object = self else {
+                return
+            }
+            self = .object(newValue)
+        }
+    }
+    
 }

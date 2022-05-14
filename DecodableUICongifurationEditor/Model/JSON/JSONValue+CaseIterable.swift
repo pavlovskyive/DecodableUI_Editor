@@ -11,7 +11,7 @@ extension JSONValue: CaseIterable {
     
     static var allCases: [JSONValue] {
         [
-            .object([:]),
+            .object([]),
             .array([]),
             .string(""),
             .number(0),

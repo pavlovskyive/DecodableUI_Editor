@@ -50,11 +50,22 @@ class DecodableUIProvider: ObservableObject {
                 }
                 return view
             }
-            .assign(to: \.view, on: self)
+            .sink { [weak self] view in
+                self?.view = view
+            }
             .store(in: &cancellables)
     }
     
-    var configurationPublisher: AnyPublisher<DecodableViewConfiguration?, Never> {
+    func subscribeToInput(_ inputPublisher: AnyPublisher<String, Never>) {
+        inputPublisher
+            .sink { [weak self] input in
+                print(input)
+                self?.input = input
+            }
+            .store(in: &cancellables)
+    }
+    
+    private var configurationPublisher: AnyPublisher<DecodableViewConfiguration?, Never> {
         $input
             .debounce(for: .seconds(1), scheduler: DispatchQueue.main)
             .removeDuplicates()
@@ -71,6 +82,33 @@ class DecodableUIProvider: ObservableObject {
 
 }
 
+class JSONViewModel: ObservableObject {
+    
+    @Published var jsonObject = JSONValue.object([
+        JSONRow(
+            key: "type",
+            value: .string("Label")
+        ),
+        JSONRow(
+            key: "parameters",
+            value: .object([
+                JSONRow(key: "text", value: .string("Sample text"))
+            ])
+        )
+    ])
+    
+    private var cancellables = Set<AnyCancellable>()
+    
+    var jsonPublisher: AnyPublisher<String, Never> {
+        $jsonObject
+            .map {
+                $0.jsonValue
+            }
+            .eraseToAnyPublisher()
+    }
+    
+}
+
 struct ContentView: View {
 
     @StateObject var uiProvider = DecodableUIProvider(viewTypes: [
@@ -79,18 +117,16 @@ struct ContentView: View {
         "Stack": StackView<DefaultViewModifier>.self
     ])
     
-    @State var json = [
-        JSONRow(key: "key", value: .string("string value1")),
-        JSONRow(key: "key", value: .string("string value2")),
-        JSONRow(key: "key", value: .string("string value3")),
-        JSONRow(key: "key", value: .string("string value4"))
-    ]
+    @StateObject var jsonViewModel = JSONViewModel()
     
     var body: some View {
 //        JSONEditor()
 //            .frame(minWidth: 600, maxWidth: .infinity, minHeight: 600, maxHeight: .infinity)
         HSplitView {
             codeEditor
+                .onAppear {
+                    uiProvider.subscribeToInput(jsonViewModel.jsonPublisher)
+                }
             Group {
                 uiProvider.view
                     .frame(minWidth: 300, maxWidth: 300, minHeight: 600, maxHeight: .infinity)
@@ -105,7 +141,7 @@ struct ContentView: View {
     }
     
     private var codeEditor: some View {
-        JSONEditor(json: $json)
+        JSONObjectView(object: $jsonViewModel.jsonObject)
             .frame(minWidth: 300, maxWidth: 600, minHeight: 600, maxHeight: .infinity)
 //        TextEditor(text: $uiProvider.input)
 //            .padding()

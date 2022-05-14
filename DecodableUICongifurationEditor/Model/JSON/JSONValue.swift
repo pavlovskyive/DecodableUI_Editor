@@ -14,7 +14,7 @@ enum JSONValue: Identifiable, Hashable {
         hashValue
     }
 
-    case object(OrderedDictionary<String, JSONValue>)
+    case object([JSONRow])
     case array([JSONValue])
     case string(String)
     case number(Int)

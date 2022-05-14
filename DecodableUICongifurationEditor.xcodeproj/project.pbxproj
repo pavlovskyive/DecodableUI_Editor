@@ -12,7 +12,6 @@
 		7941944428217A0000DB9FA3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7941944328217A0000DB9FA3 /* Assets.xcassets */; };
 		7941944728217A0000DB9FA3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7941944628217A0000DB9FA3 /* Preview Assets.xcassets */; };
 		79519C8D282F24A200534D8B /* PlainTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79519C8C282F24A200534D8B /* PlainTextField.swift */; };
-		79519C90282F2A5900534D8B /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = 79519C8F282F2A5900534D8B /* OrderedCollections */; };
 		79519C94282FD39600534D8B /* NumberedPlainTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79519C93282FD39600534D8B /* NumberedPlainTextField.swift */; };
 		79519C9A282FD78200534D8B /* JSONRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79519C99282FD78200534D8B /* JSONRow.swift */; };
 		79519C9C282FD79C00534D8B /* JSONValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79519C9B282FD79C00534D8B /* JSONValue.swift */; };
@@ -21,7 +20,11 @@
 		79519CA2282FD86800534D8B /* JSONValue+AssociatedValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79519CA1282FD86800534D8B /* JSONValue+AssociatedValues.swift */; };
 		79519CA4282FD8AD00534D8B /* JSONValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79519CA3282FD8AD00534D8B /* JSONValueView.swift */; };
 		79519CA8282FD90300534D8B /* JSONRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79519CA7282FD90300534D8B /* JSONRowView.swift */; };
-		79519CAA282FD95A00534D8B /* JSONEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79519CA9282FD95A00534D8B /* JSONEditorView.swift */; };
+		79519CAA282FD95A00534D8B /* JSONObjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79519CA9282FD95A00534D8B /* JSONObjectView.swift */; };
+		79519CAC282FFB4D00534D8B /* JSONNestedObjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79519CAB282FFB4D00534D8B /* JSONNestedObjectView.swift */; };
+		79519CAE282FFC0B00534D8B /* StackNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79519CAD282FFC0B00534D8B /* StackNavigationView.swift */; };
+		79519CB028300AEF00534D8B /* JSONRow+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79519CAF28300AEF00534D8B /* JSONRow+JSON.swift */; };
+		79519CB228300BE400534D8B /* JSONValue+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79519CB128300BE400534D8B /* JSONValue+JSON.swift */; };
 		795707762822AC8D0038C019 /* AppColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795707752822AC8D0038C019 /* AppColor.swift */; };
 		795FD34528241ED4002151F8 /* DecodableUI in Frameworks */ = {isa = PBXBuildFile; productRef = 795FD34428241ED4002151F8 /* DecodableUI */; };
 		79E17861282542D4002D65F3 /* TextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E17860282542D4002D65F3 /* TextEditor.swift */; };
@@ -43,7 +46,11 @@
 		79519CA1282FD86800534D8B /* JSONValue+AssociatedValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONValue+AssociatedValues.swift"; sourceTree = "<group>"; };
 		79519CA3282FD8AD00534D8B /* JSONValueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONValueView.swift; sourceTree = "<group>"; };
 		79519CA7282FD90300534D8B /* JSONRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONRowView.swift; sourceTree = "<group>"; };
-		79519CA9282FD95A00534D8B /* JSONEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONEditorView.swift; sourceTree = "<group>"; };
+		79519CA9282FD95A00534D8B /* JSONObjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONObjectView.swift; sourceTree = "<group>"; };
+		79519CAB282FFB4D00534D8B /* JSONNestedObjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONNestedObjectView.swift; sourceTree = "<group>"; };
+		79519CAD282FFC0B00534D8B /* StackNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackNavigationView.swift; sourceTree = "<group>"; };
+		79519CAF28300AEF00534D8B /* JSONRow+JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONRow+JSON.swift"; sourceTree = "<group>"; };
+		79519CB128300BE400534D8B /* JSONValue+JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONValue+JSON.swift"; sourceTree = "<group>"; };
 		795707752822AC8D0038C019 /* AppColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColor.swift; sourceTree = "<group>"; };
 		795FD34228241EC7002151F8 /* DecodableUI */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = DecodableUI; path = ../DecodableUI; sourceTree = "<group>"; };
 		79E17860282542D4002D65F3 /* TextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditor.swift; sourceTree = "<group>"; };
@@ -54,7 +61,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				79519C90282F2A5900534D8B /* OrderedCollections in Frameworks */,
 				795FD34528241ED4002151F8 /* DecodableUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -117,6 +123,7 @@
 				79519CA5282FD8CC00534D8B /* JSON */,
 				79419441282179FC00DB9FA3 /* ContentView.swift */,
 				79519C95282FD73500534D8B /* TextInputView */,
+				79519CAD282FFC0B00534D8B /* StackNavigationView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -138,6 +145,8 @@
 				79519C9D282FD80100534D8B /* JSONValue+CaseIterable.swift */,
 				79519C9F282FD84100534D8B /* JSONValue+RawRepresentable.swift */,
 				79519CA1282FD86800534D8B /* JSONValue+AssociatedValues.swift */,
+				79519CAF28300AEF00534D8B /* JSONRow+JSON.swift */,
+				79519CB128300BE400534D8B /* JSONValue+JSON.swift */,
 			);
 			path = JSON;
 			sourceTree = "<group>";
@@ -147,7 +156,8 @@
 			children = (
 				79519CA3282FD8AD00534D8B /* JSONValueView.swift */,
 				79519CA7282FD90300534D8B /* JSONRowView.swift */,
-				79519CA9282FD95A00534D8B /* JSONEditorView.swift */,
+				79519CA9282FD95A00534D8B /* JSONObjectView.swift */,
+				79519CAB282FFB4D00534D8B /* JSONNestedObjectView.swift */,
 			);
 			path = JSON;
 			sourceTree = "<group>";
@@ -185,7 +195,6 @@
 			name = DecodableUICongifurationEditor;
 			packageProductDependencies = (
 				795FD34428241ED4002151F8 /* DecodableUI */,
-				79519C8F282F2A5900534D8B /* OrderedCollections */,
 			);
 			productName = DecodableUICongifurationEditor;
 			productReference = 7941943C282179FB00DB9FA3 /* DecodableUICongifurationEditor.app */;
@@ -216,7 +225,6 @@
 			);
 			mainGroup = 79419433282179FB00DB9FA3;
 			packageReferences = (
-				79519C8E282F2A5900534D8B /* XCRemoteSwiftPackageReference "swift-collections" */,
 			);
 			productRefGroup = 7941943D282179FB00DB9FA3 /* Products */;
 			projectDirPath = "";
@@ -245,10 +253,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				795707762822AC8D0038C019 /* AppColor.swift in Sources */,
+				79519CAC282FFB4D00534D8B /* JSONNestedObjectView.swift in Sources */,
 				79519CA8282FD90300534D8B /* JSONRowView.swift in Sources */,
 				79519CA2282FD86800534D8B /* JSONValue+AssociatedValues.swift in Sources */,
-				79519CAA282FD95A00534D8B /* JSONEditorView.swift in Sources */,
+				79519CAA282FD95A00534D8B /* JSONObjectView.swift in Sources */,
+				79519CAE282FFC0B00534D8B /* StackNavigationView.swift in Sources */,
 				79519C9C282FD79C00534D8B /* JSONValue.swift in Sources */,
+				79519CB228300BE400534D8B /* JSONValue+JSON.swift in Sources */,
 				79E17861282542D4002D65F3 /* TextEditor.swift in Sources */,
 				79519CA4282FD8AD00534D8B /* JSONValueView.swift in Sources */,
 				79519C8D282F24A200534D8B /* PlainTextField.swift in Sources */,
@@ -257,6 +268,7 @@
 				79519C9A282FD78200534D8B /* JSONRow.swift in Sources */,
 				79419442282179FC00DB9FA3 /* ContentView.swift in Sources */,
 				79519C94282FD39600534D8B /* NumberedPlainTextField.swift in Sources */,
+				79519CB028300AEF00534D8B /* JSONRow+JSON.swift in Sources */,
 				79419440282179FC00DB9FA3 /* DecodableUICongifurationEditorApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -458,23 +470,7 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCRemoteSwiftPackageReference section */
-		79519C8E282F2A5900534D8B /* XCRemoteSwiftPackageReference "swift-collections" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/apple/swift-collections.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
 /* Begin XCSwiftPackageProductDependency section */
-		79519C8F282F2A5900534D8B /* OrderedCollections */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 79519C8E282F2A5900534D8B /* XCRemoteSwiftPackageReference "swift-collections" */;
-			productName = OrderedCollections;
-		};
 		795FD34428241ED4002151F8 /* DecodableUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = DecodableUI;
