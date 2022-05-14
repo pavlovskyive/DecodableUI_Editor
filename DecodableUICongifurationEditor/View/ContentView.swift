@@ -79,12 +79,21 @@ struct ContentView: View {
         "Stack": StackView<DefaultViewModifier>.self
     ])
     
+    @State var json = [
+        JSONRow(key: "key", value: .string("string value1")),
+        JSONRow(key: "key", value: .string("string value2")),
+        JSONRow(key: "key", value: .string("string value3")),
+        JSONRow(key: "key", value: .string("string value4"))
+    ]
+    
     var body: some View {
+//        JSONEditor()
+//            .frame(minWidth: 600, maxWidth: .infinity, minHeight: 600, maxHeight: .infinity)
         HSplitView {
             codeEditor
             Group {
                 uiProvider.view
-                    .frame(minWidth: 300, maxWidth: .infinity, minHeight: 600, maxHeight: .infinity)
+                    .frame(minWidth: 300, maxWidth: 300, minHeight: 600, maxHeight: .infinity)
                     .animation(.easeInOut)
             }
             .background(Color.white)
@@ -96,9 +105,11 @@ struct ContentView: View {
     }
     
     private var codeEditor: some View {
-        TextEditor(text: $uiProvider.input)
-            .padding()
-            .frame(minWidth: 600, maxWidth: .infinity, minHeight: 600, maxHeight: .infinity)
+        JSONEditor(json: $json)
+            .frame(minWidth: 300, maxWidth: 600, minHeight: 600, maxHeight: .infinity)
+//        TextEditor(text: $uiProvider.input)
+//            .padding()
+//            .frame(minWidth: 600, maxWidth: .infinity, minHeight: 600, maxHeight: .infinity)
             
     }
     

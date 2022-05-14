@@ -16,3 +16,11 @@ struct AppColor {
     static let editorInsertion = Color("InsertionPoint")
     
 }
+
+extension Color {
+    
+    var nsColor: NSColor {
+        NSColor(self)
+    }
+    
+}
