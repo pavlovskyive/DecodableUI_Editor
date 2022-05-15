@@ -17,9 +17,7 @@ struct SideView<E: NestedListContainable, Content: View>: View {
         List(list, children: \.children) { listItem in
             content(listItem)
         }
-//        List(list, children: \.children) { listItem in
-//            content(listItem)
-//        }
+        .listStyle(.sidebar)
     }
     
 }

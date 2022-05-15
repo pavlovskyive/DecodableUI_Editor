@@ -16,8 +16,8 @@ struct JSONValueView: View {
     var body: some View {
         HStack(spacing: 10) {
             Picker(selection: $value, label: EmptyView()) {
-                ForEach(JSONValue.allCases, id: \.rawValue) { value in
-                    Text(value.rawValue).tag(value)
+                ForEach(JSONValue.allCases, id: \.typeDescription) { value in
+                    Text(value.typeDescription).tag(value)
                         .font(.system(size: 8, weight: .bold, design: .monospaced))
                 }
             }

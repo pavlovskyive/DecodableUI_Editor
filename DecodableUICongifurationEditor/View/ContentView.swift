@@ -82,12 +82,18 @@ class DecodableUIProvider: ObservableObject {
 
 }
 
-class JSONViewModel: ObservableObject {
+class JSONModel: ObservableObject {
+    
+    @Published var selectedId: Int?
     
     @Published var jsonObject = JSONValue.object([
         JSONRow(
             key: "type",
             value: .string("Stack")
+        ),
+        JSONRow(
+            key: "isAvailable",
+            value: .bool(false)
         ),
         JSONRow(
             key: "parameters",
@@ -116,16 +122,20 @@ class JSONViewModel: ObservableObject {
     
     private var cancellables = Set<AnyCancellable>()
     
+    init() {
+        selectedId = jsonObject.id
+    }
+    
     var jsonPublisher: AnyPublisher<String, Never> {
         $jsonObject
             .map {
-                $0.jsonValue
+                $0.jsonString
             }
             .eraseToAnyPublisher()
     }
     
     func rowForId(_ id: Int) -> JSONRow? {
-        jsonObject.rowForId(id)
+        jsonObject.findRow(withValueId: id)
     }
     
 }
@@ -138,18 +148,15 @@ struct ContentView: View {
         "Stack": StackView<DefaultViewModifier>.self
     ])
     
-    @StateObject var jsonViewModel = JSONViewModel()
+    @StateObject var jsonViewModel = JSONModel()
     
     var body: some View {
-//        JSONEditor()
-//            .frame(minWidth: 600, maxWidth: .infinity, minHeight: 600, maxHeight: .infinity)
-//        HSplitView {
         HStack {
-            JSONHierarchy(object: jsonViewModel.jsonObject)
+            JSONHierarchy()
             Group {
                 uiProvider.view
-//                    .frame(minWidth: 300, maxWidth: 300, minHeight: 600, maxHeight: .infinity)
                     .animation(.easeInOut)
+                    .environment(\.colorScheme, .light)
             }
             .frame(width: 300, height: 600)
             .background(Color.white)
@@ -161,29 +168,12 @@ struct ContentView: View {
         }
         .background(Color("Editor"))
         .environmentObject(jsonViewModel)
-//            codeEditor
-//                .onAppear {
-//                    uiProvider.subscribeToInput(jsonViewModel.jsonPublisher)
-//                }
-//            Group {
-//                uiProvider.view
-//                    .frame(minWidth: 300, maxWidth: 300, minHeight: 600, maxHeight: .infinity)
-//                    .animation(.easeInOut)
-//            }
-//            .background(Color.white)
-//            .cornerRadius(40)
-//            .padding()
-//        }
 
     }
     
     private var codeEditor: some View {
         JSONObjectView(object: $jsonViewModel.jsonObject)
             .frame(minWidth: 300, maxWidth: 600, minHeight: 600, maxHeight: .infinity)
-//        TextEditor(text: $uiProvider.input)
-//            .padding()
-//            .frame(minWidth: 600, maxWidth: .infinity, minHeight: 600, maxHeight: .infinity)
-            
     }
     
 }

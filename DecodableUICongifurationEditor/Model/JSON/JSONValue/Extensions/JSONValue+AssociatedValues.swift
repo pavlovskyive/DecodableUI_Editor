@@ -9,6 +9,40 @@ import Foundation
 
 extension JSONValue {
     
+    // MARK: - .object
+    
+    var objectValues: [JSONRow] {
+        get {
+            guard case let .object(value) = self else {
+                return []
+            }
+            return value
+        }
+        set {
+            guard case .object = self else {
+                return
+            }
+            self = .object(newValue)
+        }
+    }
+    
+    // MARK: - .array
+    
+    var arrayValues: [JSONValue] {
+        get {
+            guard case let .array(value) = self else {
+                return []
+            }
+            return value
+        }
+        set {
+            guard case .array = self else {
+                return
+            }
+            self = .array(newValue)
+        }
+    }
+    
     // MARK: - .string
 
     var stringValue: String {
@@ -43,38 +77,21 @@ extension JSONValue {
         }
     }
     
-    // MARK: - .object
+    // MARK: - .bool
     
-    var objectValue: [JSONRow] {
+    var boolValue: Bool {
         get {
-            guard case let .object(value) = self else {
-                return []
+            guard case let .bool(value) = self else {
+                return false
             }
             return value
         }
         set {
-            guard case .object = self else {
+            guard case .bool = self else {
                 return
             }
-            self = .object(newValue)
+            self = .bool(newValue)
         }
     }
-    
-    // MARK: - .array
-    
-    var arrayValue: [JSONValue] {
-        get {
-            guard case let .array(values) = self else {
-                return []
-            }
-            return values
-        }
-        set {
-            guard case .array = self else {
-                return
-            }
-            self = .array(newValue)
-        }
-    }
-    
+
 }

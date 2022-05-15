@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AppColor {
+enum AppColor {
     
     static let editorBackround = Color("Editor")
     

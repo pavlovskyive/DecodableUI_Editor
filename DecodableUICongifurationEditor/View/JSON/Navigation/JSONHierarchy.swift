@@ -10,16 +10,11 @@ import Combine
 
 struct JSONHierarchy: View {
     
-    @EnvironmentObject var jsonModel: JSONViewModel
-    
-    var object: JSONValue
+    @EnvironmentObject var jsonModel: JSONModel
     
     var body: some View {
         NavigationView {
-            sideView
-//            .background(AppColor.editorBackround)
-//            .navigationTitle("Decodable UI Editor")
-//            .frame(width: 400)
+            SideView(list: [jsonModel.jsonObject], content: link(to:))
         }
         .toolbar {
             ToolbarItem(placement: .navigation) {
@@ -30,176 +25,19 @@ struct JSONHierarchy: View {
         }
     }
     
-    private var sideView: some View {
-        SideView(list: [object]) { value in
-            NavigationLink {
-                Text("Detailed view for element: \(jsonModel.rowForId(value.id)?.key ?? "") \(value.rawValue)")
-            } label: {
-                Text("\(jsonModel.rowForId(value.id)?.key ?? "") \(value.rawValue)")
-            }
+    private func link(to value: JSONValue) -> some View {
+        NavigationLink(tag: value.id, selection: $jsonModel.selectedId) {
+            // INFO: Temp
+            Text("Detailed view for element: \(jsonModel.rowForId(value.id)?.key ?? "") \(value.typeDescription)")
+        } label: {
+            JSONHierarchyRow(value: value)
         }
-        .listStyle(.sidebar)
     }
-    
-//    private var list: some View {
-//        List {
-//            ForEach(object.objectValue) { row in
-//                JSONHierarchyRow(row: row)
-//            }
-//        }
-//    }
     
     private func toggleSidebar() {
-        NSApp.keyWindow?.firstResponder?.tryToPerform(#selector(NSSplitViewController.toggleSidebar(_:)), with: nil)
+        NSApp.keyWindow?
+            .firstResponder?
+            .tryToPerform(#selector(NSSplitViewController.toggleSidebar(_:)), with: nil)
     }
     
 }
-
-struct JSONHierarchyRow: View {
-    
-    var row: JSONRow
-    
-    var body: some View {
-        switch row.value {
-        case .object:
-            NavigationLink {
-                Text("detailed view for \(row.value.jsonValue)")
-            } label: {
-                HStack {
-                    Text("\(row.key) \(row.value.rawValue) \(row.value.jsonValue)")
-                    Spacer()
-                    Image(systemName: "chevron.right")
-                }
-            }
-        default:
-            NavigationLink {
-                Text("detailed view for \(row.value.jsonValue)")
-            } label: {
-                HStack {
-                    Text("\(row.key) \(row.value.rawValue) \(row.value.jsonValue)")
-                    Spacer()
-                    Image(systemName: "chevron.right")
-                }
-            }
-            Text("\(row.key) \(row.value.rawValue) \(row.value.jsonValue)")
-        }
-    }
-    
-}
-
-//struct JSONHierarchyObjectView: View {
-//
-//    var object: JSONValue
-//
-//    var body: some View {
-//        HStack(spacing: 0) {
-//            RoundedRectangle(cornerRadius: 4)
-//                .fill(.blue.opacity(0.2))
-//                .frame(maxHeight: .infinity)
-//                .frame(width: 8)
-//                .padding(.trailing, 8)
-//
-//            flow
-//                .frame(maxHeight: .infinity)
-//        }
-//    }
-//
-//    private var flow: some View {
-//        VStack {
-//            ForEach(object.objectValue) { row in
-//                switch row.value {
-//                case .object:
-//                    VStack {
-//                        JSONHierarchyRowView(row: row)
-//                        JSONHierarchyObjectView(object: row.value)
-//                    }
-//                case let .array(values):
-//                    VStack {
-//                        JSONHierarchyRowView(row: row)
-//                        JSONHierarchyArrayView(elements: values)
-//                    }
-//                default:
-//                    JSONHierarchyRowView(row: row)
-//                }
-//            }
-//        }
-//    }
-//
-//}
-//
-//struct JSONHierarchyArrayView: View {
-//
-//    var elements: [JSONValue]
-//
-//    var body: some View {
-//        HStack(spacing: 0) {
-//            RoundedRectangle(cornerRadius: 4)
-//                .fill(.green.opacity(0.2))
-//                .frame(maxHeight: .infinity)
-//                .frame(width: 8)
-//                .padding(.trailing, 8)
-//
-//            flow
-//                .frame(maxHeight: .infinity)
-//        }
-//    }
-//
-//    private var flow: some View {
-//        VStack {
-//            ForEach(elements) { value in
-//                switch value {
-//                case .object:
-//                    JSONHierarchyObjectView(object: value)
-//                case let .array(values):
-//                    JSONHierarchyArrayView(elements: values)
-//                default:
-//                    JSONHierarchyRowView(value: value)
-//                }
-//            }
-//        }
-//    }
-//
-//}
-//
-//struct JSONHierarchyRowView: View {
-//
-//    var row: JSONRow
-//
-//    var body: some View {
-//        NavigationLink {
-//            Text("Detailed view for | \(row.value.rawValue) | \(row.value.jsonValue)")
-//        } label: {
-//            rowView
-//        }
-//        .buttonStyle(.plain)
-//    }
-//
-//    init(row: JSONRow) {
-//        self.row = row
-//    }
-//
-//    init(key: String? = nil, value: JSONValue) {
-//        self.row = JSONRow(key: key ?? "", value: value)
-//    }
-//
-//    private var rowView: some View {
-//        HStack {
-//            Text(row.key)
-//            Text(row.value.rawValue)
-//                .foregroundColor(AppColor.editorText.opacity(0.5))
-//            Spacer()
-//            switch row.value {
-//            case .string, .number, .bool:
-//                Text(row.value.jsonValue)
-//            default:
-//                EmptyView()
-//            }
-//        }
-//        .foregroundColor(AppColor.editorText)
-//        .font(.system(size: 15, weight: .light, design: .monospaced))
-//        .padding()
-//        .background(Color.white.opacity(0.2))
-//        .cornerRadius(8)
-//    }
-//
-//}

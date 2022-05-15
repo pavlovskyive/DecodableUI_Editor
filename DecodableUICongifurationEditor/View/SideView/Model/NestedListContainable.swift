@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol NestedListContainable: Identifiable {
+protocol NestedListContainable: Identifiable, Hashable {
 
     var children: [Self]? { get }
     

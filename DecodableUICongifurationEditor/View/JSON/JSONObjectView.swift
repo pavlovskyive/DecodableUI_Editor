@@ -33,9 +33,9 @@ struct JSONObjectView: View {
     
     private var content: some View {
         VStack(alignment: .leading, spacing: 0) {
-            ForEach($object.objectValue) { $pair in
+            ForEach($object.objectValues) { $pair in
                 JSONRowView(item: $pair, showSubview: { self.showSubview(view: $0) })
-                if pair.id != object.objectValue.last?.id {
+                if pair.id != object.objectValues.last?.id {
                     Divider()
                         .foregroundColor(Color("Text").opacity(0.5))
                 }
@@ -51,7 +51,7 @@ struct JSONObjectView: View {
     
     private var addButton: some View {
         Button {
-            object.objectValue.append(.init(key: "", value: .null))
+            object.objectValues.append(.init(key: "", value: .null))
         } label: {
             Text("add row")
                 .font(.system(size: 16, weight: .light, design: .monospaced))
