@@ -22,10 +22,13 @@
 		79519CA8282FD90300534D8B /* JSONRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79519CA7282FD90300534D8B /* JSONRowView.swift */; };
 		79519CAA282FD95A00534D8B /* JSONObjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79519CA9282FD95A00534D8B /* JSONObjectView.swift */; };
 		79519CAC282FFB4D00534D8B /* JSONNestedObjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79519CAB282FFB4D00534D8B /* JSONNestedObjectView.swift */; };
-		79519CAE282FFC0B00534D8B /* StackNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79519CAD282FFC0B00534D8B /* StackNavigationView.swift */; };
 		79519CB028300AEF00534D8B /* JSONRow+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79519CAF28300AEF00534D8B /* JSONRow+JSON.swift */; };
 		79519CB228300BE400534D8B /* JSONValue+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79519CB128300BE400534D8B /* JSONValue+JSON.swift */; };
 		79519CB428301A5200534D8B /* JSONHierarchy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79519CB328301A5200534D8B /* JSONHierarchy.swift */; };
+		79519CB82831697B00534D8B /* NestedListContainable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79519CB72831697B00534D8B /* NestedListContainable.swift */; };
+		79519CBB28316A5500534D8B /* SideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79519CBA28316A5500534D8B /* SideView.swift */; };
+		79519CBD28316D3F00534D8B /* JSONValue+NestedListContainable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79519CBC28316D3F00534D8B /* JSONValue+NestedListContainable.swift */; };
+		79519CBF283172B600534D8B /* StackNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79519CBE283172B600534D8B /* StackNavigationView.swift */; };
 		795707762822AC8D0038C019 /* AppColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795707752822AC8D0038C019 /* AppColor.swift */; };
 		795FD34528241ED4002151F8 /* DecodableUI in Frameworks */ = {isa = PBXBuildFile; productRef = 795FD34428241ED4002151F8 /* DecodableUI */; };
 		79E17861282542D4002D65F3 /* TextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E17860282542D4002D65F3 /* TextEditor.swift */; };
@@ -49,10 +52,13 @@
 		79519CA7282FD90300534D8B /* JSONRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONRowView.swift; sourceTree = "<group>"; };
 		79519CA9282FD95A00534D8B /* JSONObjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONObjectView.swift; sourceTree = "<group>"; };
 		79519CAB282FFB4D00534D8B /* JSONNestedObjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONNestedObjectView.swift; sourceTree = "<group>"; };
-		79519CAD282FFC0B00534D8B /* StackNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackNavigationView.swift; sourceTree = "<group>"; };
 		79519CAF28300AEF00534D8B /* JSONRow+JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONRow+JSON.swift"; sourceTree = "<group>"; };
 		79519CB128300BE400534D8B /* JSONValue+JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONValue+JSON.swift"; sourceTree = "<group>"; };
 		79519CB328301A5200534D8B /* JSONHierarchy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONHierarchy.swift; sourceTree = "<group>"; };
+		79519CB72831697B00534D8B /* NestedListContainable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NestedListContainable.swift; sourceTree = "<group>"; };
+		79519CBA28316A5500534D8B /* SideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideView.swift; sourceTree = "<group>"; };
+		79519CBC28316D3F00534D8B /* JSONValue+NestedListContainable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONValue+NestedListContainable.swift"; sourceTree = "<group>"; };
+		79519CBE283172B600534D8B /* StackNavigationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackNavigationView.swift; sourceTree = "<group>"; };
 		795707752822AC8D0038C019 /* AppColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColor.swift; sourceTree = "<group>"; };
 		795FD34228241EC7002151F8 /* DecodableUI */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = DecodableUI; path = ../DecodableUI; sourceTree = "<group>"; };
 		79E17860282542D4002D65F3 /* TextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditor.swift; sourceTree = "<group>"; };
@@ -122,10 +128,10 @@
 		79519C96282FD74500534D8B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				79519CB62831692700534D8B /* SideView */,
 				79419441282179FC00DB9FA3 /* ContentView.swift */,
 				79519CA5282FD8CC00534D8B /* JSON */,
 				79519C95282FD73500534D8B /* TextInputView */,
-				79519CAD282FFC0B00534D8B /* StackNavigationView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -149,6 +155,7 @@
 				79519CA1282FD86800534D8B /* JSONValue+AssociatedValues.swift */,
 				79519CAF28300AEF00534D8B /* JSONRow+JSON.swift */,
 				79519CB128300BE400534D8B /* JSONValue+JSON.swift */,
+				79519CBC28316D3F00534D8B /* JSONValue+NestedListContainable.swift */,
 			);
 			path = JSON;
 			sourceTree = "<group>";
@@ -168,9 +175,27 @@
 		79519CB52830F32000534D8B /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				79519CBE283172B600534D8B /* StackNavigationView.swift */,
 				79519CB328301A5200534D8B /* JSONHierarchy.swift */,
 			);
 			path = Navigation;
+			sourceTree = "<group>";
+		};
+		79519CB62831692700534D8B /* SideView */ = {
+			isa = PBXGroup;
+			children = (
+				79519CB92831697F00534D8B /* Model */,
+				79519CBA28316A5500534D8B /* SideView.swift */,
+			);
+			path = SideView;
+			sourceTree = "<group>";
+		};
+		79519CB92831697F00534D8B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				79519CB72831697B00534D8B /* NestedListContainable.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		795FD34128241EC6002151F8 /* Packages */ = {
@@ -263,17 +288,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79519CB82831697B00534D8B /* NestedListContainable.swift in Sources */,
 				795707762822AC8D0038C019 /* AppColor.swift in Sources */,
 				79519CAC282FFB4D00534D8B /* JSONNestedObjectView.swift in Sources */,
 				79519CA8282FD90300534D8B /* JSONRowView.swift in Sources */,
 				79519CA2282FD86800534D8B /* JSONValue+AssociatedValues.swift in Sources */,
 				79519CAA282FD95A00534D8B /* JSONObjectView.swift in Sources */,
-				79519CAE282FFC0B00534D8B /* StackNavigationView.swift in Sources */,
+				79519CBD28316D3F00534D8B /* JSONValue+NestedListContainable.swift in Sources */,
 				79519C9C282FD79C00534D8B /* JSONValue.swift in Sources */,
 				79519CB228300BE400534D8B /* JSONValue+JSON.swift in Sources */,
+				79519CBB28316A5500534D8B /* SideView.swift in Sources */,
 				79E17861282542D4002D65F3 /* TextEditor.swift in Sources */,
 				79519CA4282FD8AD00534D8B /* JSONValueView.swift in Sources */,
 				79519C8D282F24A200534D8B /* PlainTextField.swift in Sources */,
+				79519CBF283172B600534D8B /* StackNavigationView.swift in Sources */,
 				79519CA0282FD84100534D8B /* JSONValue+RawRepresentable.swift in Sources */,
 				79519C9E282FD80100534D8B /* JSONValue+CaseIterable.swift in Sources */,
 				79519C9A282FD78200534D8B /* JSONRow.swift in Sources */,

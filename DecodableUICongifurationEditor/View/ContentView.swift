@@ -124,6 +124,10 @@ class JSONViewModel: ObservableObject {
             .eraseToAnyPublisher()
     }
     
+    func rowForId(_ id: Int) -> JSONRow? {
+        jsonObject.rowForId(id)
+    }
+    
 }
 
 struct ContentView: View {
@@ -155,7 +159,8 @@ struct ContentView: View {
         .onAppear {
             uiProvider.subscribeToInput(jsonViewModel.jsonPublisher)
         }
-            .background(Color("Editor"))
+        .background(Color("Editor"))
+        .environmentObject(jsonViewModel)
 //            codeEditor
 //                .onAppear {
 //                    uiProvider.subscribeToInput(jsonViewModel.jsonPublisher)
