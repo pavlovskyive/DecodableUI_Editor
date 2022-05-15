@@ -60,4 +60,21 @@ extension JSONValue {
         }
     }
     
+    // MARK: - .array
+    
+    var arrayValue: [JSONValue] {
+        get {
+            guard case let .array(values) = self else {
+                return []
+            }
+            return values
+        }
+        set {
+            guard case .array = self else {
+                return
+            }
+            self = .array(newValue)
+        }
+    }
+    
 }

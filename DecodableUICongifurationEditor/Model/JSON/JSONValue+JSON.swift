@@ -11,13 +11,16 @@ extension JSONValue {
     
     var jsonValue: String {
         switch self {
-        case .object(let rows):
+        case let .object(rows):
             let innerJSON = rows.map { row in
                 row.jsonValue
             }.joined(separator: ", ")
             return "{\(innerJSON)}"
-        case .array:
-            return ""
+        case let .array(elements):
+            let innerJSON = elements.map { element in
+                element.jsonValue
+            }.joined(separator: ", ")
+            return "[\(innerJSON)]"
         case .string(let string):
             return "\"\(string)\""
         case .number(let number):

@@ -87,12 +87,29 @@ class JSONViewModel: ObservableObject {
     @Published var jsonObject = JSONValue.object([
         JSONRow(
             key: "type",
-            value: .string("Label")
+            value: .string("Stack")
         ),
         JSONRow(
             key: "parameters",
             value: .object([
-                JSONRow(key: "text", value: .string("Sample text"))
+                JSONRow(key: "direction", value: .string("vertical")),
+                JSONRow(
+                    key: "elements",
+                    value: .array([
+                        .object([
+                            JSONRow(key: "type", value: .string("Label")),
+                            JSONRow(key: "parameters", value: .object([
+                                JSONRow(key: "text", value: .string("Some text 1"))
+                            ]))
+                        ]),
+                        .object([
+                            JSONRow(key: "type", value: .string("Image")),
+                            JSONRow(key: "parameters", value: .object([
+                                JSONRow(key: "systemName", value: .string("photo"))
+                            ]))
+                        ])
+                    ])
+                )
             ])
         )
     ])
@@ -122,21 +139,36 @@ struct ContentView: View {
     var body: some View {
 //        JSONEditor()
 //            .frame(minWidth: 600, maxWidth: .infinity, minHeight: 600, maxHeight: .infinity)
-        HSplitView {
-            codeEditor
-                .onAppear {
-                    uiProvider.subscribeToInput(jsonViewModel.jsonPublisher)
-                }
+//        HSplitView {
+        HStack {
+            JSONHierarchy(object: jsonViewModel.jsonObject)
             Group {
                 uiProvider.view
-                    .frame(minWidth: 300, maxWidth: 300, minHeight: 600, maxHeight: .infinity)
+//                    .frame(minWidth: 300, maxWidth: 300, minHeight: 600, maxHeight: .infinity)
                     .animation(.easeInOut)
             }
+            .frame(width: 300, height: 600)
             .background(Color.white)
             .cornerRadius(40)
             .padding()
         }
-        .background(Color("Editor"))
+        .onAppear {
+            uiProvider.subscribeToInput(jsonViewModel.jsonPublisher)
+        }
+            .background(Color("Editor"))
+//            codeEditor
+//                .onAppear {
+//                    uiProvider.subscribeToInput(jsonViewModel.jsonPublisher)
+//                }
+//            Group {
+//                uiProvider.view
+//                    .frame(minWidth: 300, maxWidth: 300, minHeight: 600, maxHeight: .infinity)
+//                    .animation(.easeInOut)
+//            }
+//            .background(Color.white)
+//            .cornerRadius(40)
+//            .padding()
+//        }
 
     }
     
