@@ -9,9 +9,14 @@ import SwiftUI
 
 @main
 struct DecodableUICongifurationEditorApp: App {
+
     var body: some Scene {
         WindowGroup {
             ContentView()
         }
+        .commands {
+            SidebarCommands()
+        }
     }
+
 }

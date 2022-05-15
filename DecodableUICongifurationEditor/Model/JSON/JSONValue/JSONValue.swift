@@ -8,13 +8,9 @@
 import Foundation
 import OrderedCollections
 
-enum JSONValue: Identifiable, Hashable {
-    
-    var id: Int {
-        hashValue
-    }
+enum JSONValue {
 
-    case object(OrderedDictionary<String, JSONValue>)
+    case object([JSONRow])
     case array([JSONValue])
     case string(String)
     case number(Int)

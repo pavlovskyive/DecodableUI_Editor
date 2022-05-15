@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct JSONRow: Identifiable {
+struct JSONRow: Identifiable, Hashable {
 
     let id = UUID()
 
