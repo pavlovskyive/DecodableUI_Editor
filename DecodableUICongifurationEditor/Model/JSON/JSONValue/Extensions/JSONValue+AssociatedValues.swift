@@ -13,10 +13,10 @@ extension JSONValue {
     
     var objectValues: [JSONRow] {
         get {
-            guard case let .object(value) = self else {
+            guard case let .object(values) = self else {
                 return []
             }
-            return value
+            return values
         }
         set {
             guard case .object = self else {
@@ -28,12 +28,12 @@ extension JSONValue {
     
     // MARK: - .array
     
-    var arrayValues: [JSONValue] {
+    var arrayValues: [JSONRow] {
         get {
-            guard case let .array(value) = self else {
+            guard case let .array(values) = self else {
                 return []
             }
-            return value
+            return values
         }
         set {
             guard case .array = self else {

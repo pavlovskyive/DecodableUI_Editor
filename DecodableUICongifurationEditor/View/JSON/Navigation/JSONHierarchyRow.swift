@@ -19,23 +19,23 @@ struct JSONHierarchyRow: View {
     
     @EnvironmentObject var jsonModel: JSONModel
     
-    var value: JSONValue
+    var row: JSONRow
    
     var body: some View {
         Label {
             HStack(alignment: .top, spacing: 5) {
-                if let key = jsonModel.rowForId(value.id)?.key {
+                if let key = row.key {
                     Text(key)
                 }
-                Text(value.typeDescription)
+                Text(row.typeDescription)
                     .opacity(Constants.valueTypeOpacity)
                 
-                Text(value.description)
+                Text(row.valueDescription)
                     .opacity(Constants.valueDescriptionOpacity)
             }
             .padding(.leading, 5)
         } icon: {
-            Image(systemName: value.imageSystemName)
+            Image(systemName: row.imageSystemName)
         }
         .foregroundColor(AppColor.sidebarTextColor)
         .font(AppFont.sideBar)

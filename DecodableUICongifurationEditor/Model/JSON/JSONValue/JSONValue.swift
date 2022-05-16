@@ -11,7 +11,7 @@ import OrderedCollections
 enum JSONValue {
 
     case object([JSONRow])
-    case array([JSONValue])
+    case array([JSONRow]) // where key = nil
     case string(String)
     case number(Int)
     case bool(Bool)

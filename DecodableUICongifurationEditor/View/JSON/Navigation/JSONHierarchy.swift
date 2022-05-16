@@ -14,9 +14,10 @@ struct JSONHierarchy: View {
     
     var body: some View {
         NavigationView {
-            NestedList(list: [jsonModel.jsonObject], content: link(to:))
+            NestedList(list: [jsonModel.rootObject]) { row in
+                link(to: row)
+            }
         }
-        .deleteDisabled(jsonModel.selectedId == nil)
         .onDeleteCommand {
             jsonModel.deleteSelected()
         }
@@ -31,21 +32,18 @@ struct JSONHierarchy: View {
         }
     }
     
-    private func link(to value: JSONValue) -> some View {
-        NavigationLink(tag: value.id, selection: $jsonModel.selectedId) {
+    private func link(to row: JSONRow) -> some View {
+        NavigationLink(tag: row.id, selection: $jsonModel.selectedId) {
             // INFO: Temp
-            Text("Detailed view for element: \(jsonModel.rowForId(value.id)?.key ?? "") \(value.typeDescription)")
+            Text("Detailed view for element: \(row.key ?? "") \(row.typeDescription)")
         } label: {
-            JSONHierarchyRow(value: value)
+            JSONHierarchyRow(row: row)
         }
-        .deleteDisabled(false)
         .contextMenu {
-            Button("Delete", action: handleDeleteCommand)
+            Button("Delete") {
+                jsonModel.delete(with: row.id)
+            }
         }
-    }
-    
-    private func handleDeleteCommand() {
-        print("delete command")
     }
     
     private func toggleSidebar() {

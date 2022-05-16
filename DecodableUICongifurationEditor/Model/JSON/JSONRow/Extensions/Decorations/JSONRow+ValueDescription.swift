@@ -1,5 +1,5 @@
 //
-//  JSONValue+CustomStringConvertible.swift
+//  JSONRow+CustomStringConvertible.swift
 //  DecodableUICongifurationEditor
 //
 //  Created by Vsevolod Pavlovskyi on 16.05.2022.
@@ -9,35 +9,38 @@ import Foundation
 
 private enum Constants {
 
-    static let maxObjectInnerElements = 3
-    static let maxArrayInnerElements = 3
+    static let maxObjectInnerCount = 3
+    static let maxArrayInnerCount = 3
 
 }
 
-extension JSONValue: CustomStringConvertible {
+extension JSONRow {
 
-    var description: String {
-        switch self {
-        case .object(let rows):
-            var innerString = rows
-                .prefix(Constants.maxObjectInnerElements)
-                .map { row in
-                    return "\(row.key): \(row.value.typeDescription)"
+    var valueDescription: String {
+        switch value {
+        case .object(let values):
+            var innerString = values
+                .prefix(Constants.maxObjectInnerCount)
+                .compactMap { row in
+                    guard let key = row.key else {
+                        return nil
+                    }
+                    return "\(key): \(row.typeDescription)"
                 }
                 .joined(separator: ", ")
 
-            if rows.count > Constants.maxObjectInnerElements {
+            if values.count > Constants.maxObjectInnerCount {
                 innerString.append("...")
             }
             return "{ \(innerString) }"
 
         case .array(let values):
             var innerString = values
-                .prefix(Constants.maxArrayInnerElements)
+                .prefix(Constants.maxArrayInnerCount)
                 .map(\.typeDescription)
                 .joined(separator: ", ")
             
-            if values.count > Constants.maxArrayInnerElements {
+            if values.count > Constants.maxArrayInnerCount {
                 innerString.append("...")
             }
             return "[ \(innerString) ]"

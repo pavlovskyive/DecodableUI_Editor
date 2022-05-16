@@ -7,8 +7,8 @@
 
 import Foundation
 
-protocol NestedListContainable: Identifiable, Hashable {
+protocol NestedValuesContainable: Identifiable, Hashable {
 
-    var children: [Self]? { get }
+    var nestedValues: [Self]? { get }
     
 }

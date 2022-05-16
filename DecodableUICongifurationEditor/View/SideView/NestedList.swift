@@ -8,14 +8,14 @@
 import SwiftUI
 import Combine
 
-struct NestedList<E: NestedListContainable, Content: View>: View {
+struct NestedList<E: NestedValuesContainable, Content: View>: View {
     
     var list: [E]
     var content: (E) -> Content
     
     var body: some View {
-        List(list, children: \.children) { listItem in
-            content(listItem)
+        List(list, children: \.nestedValues) { value in
+            content(value)
         }
         .listStyle(.sidebar)
     }

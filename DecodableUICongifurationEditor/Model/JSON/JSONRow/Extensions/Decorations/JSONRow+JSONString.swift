@@ -10,7 +10,11 @@ import Foundation
 extension JSONRow {
     
     var jsonString: String {
-        "\"\(key)\": \(value.jsonString)"
+        guard let key = key else {
+            return value.jsonString
+        }
+
+        return "\"\(key)\": \(value.jsonString)"
     }
     
 }

@@ -84,69 +84,81 @@ class DecodableUIProvider: ObservableObject {
 
 class JSONModel: ObservableObject {
     
-    @Published var selectedId: Int?
-    
-    @Published var jsonObject = JSONValue.object([
-        JSONRow(
-            key: "type",
-            value: .string("Stack")
-        ),
-        JSONRow(
-            key: "isAvailable",
-            value: .bool(false)
-        ),
-        JSONRow(
-            key: "parameters",
-            value: .object([
-                JSONRow(key: "direction", value: .string("vertical")),
-                JSONRow(
-                    key: "elements",
-                    value: .array([
-                        .object([
-                            JSONRow(key: "type", value: .string("Label")),
-                            JSONRow(key: "parameters", value: .object([
-                                JSONRow(key: "text", value: .string("Some text 1"))
-                            ]))
-                        ]),
-                        .object([
-                            JSONRow(key: "type", value: .string("Image")),
-                            JSONRow(key: "parameters", value: .object([
-                                JSONRow(key: "systemName", value: .string("photo"))
-                            ]))
+    @Published var selectedId: UUID?
+    @Published var rootObject = JSONRow(
+        value: .object([
+            JSONRow(
+                key: "type",
+                value: .string("Stack")
+            ),
+            JSONRow(
+                key: "isAvailable",
+                value: .bool(false)
+            ),
+            JSONRow(
+                key: "parameters",
+                value: .object([
+                    JSONRow(key: "direction", value: .string("vertical")),
+                    JSONRow(
+                        key: "elements",
+                        value: .array([
+                            JSONRow(
+                                value: .object([
+                                    JSONRow(key: "type", value: .string("Label")),
+                                    JSONRow(key: "parameters", value: .object([
+                                        JSONRow(key: "text", value: .string("Some text 1"))
+                                    ]))
+                                ])
+                            ),
+                            JSONRow(
+                                value: .object([
+                                    JSONRow(key: "type", value: .string("Image")),
+                                    JSONRow(key: "parameters", value: .object([
+                                        JSONRow(key: "systemName", value: .string("photo"))
+                                    ]))
+                                ])
+                            )
                         ])
-                    ])
-                )
-            ])
-        )
-    ])
+                    )
+                ])
+            )
+        ])
+    )
     
     private var cancellables = Set<AnyCancellable>()
     
     init() {
-        selectedId = jsonObject.id
+        resetSelection()
     }
     
     var jsonPublisher: AnyPublisher<String, Never> {
-        $jsonObject
+        $rootObject
             .map {
                 $0.jsonString
             }
             .eraseToAnyPublisher()
     }
     
-    func rowForId(_ id: Int) -> JSONRow? {
-        jsonObject.nestedRow(withValueId: id)
+    func delete(with id: UUID) {
+        let row = rootObject.removingRow(with: id)
+        rootObject = row ?? .init(value: .object([]))
+        
+        if selectedId == id {
+            resetSelection()
+        }
     }
     
     func deleteSelected() {
         guard let id = selectedId else {
             return
         }
-        guard let updatedObject = jsonObject.removingValue(with: id) else {
-            jsonObject = .object([])
-            return
-        }
-        jsonObject = updatedObject
+        
+        delete(with: id)
+        selectedId = nil
+    }
+    
+    private func resetSelection() {
+        selectedId = rootObject.id
     }
     
 }
@@ -181,10 +193,10 @@ struct ContentView: View {
 
     }
     
-    private var codeEditor: some View {
-        JSONObjectView(object: $jsonViewModel.jsonObject)
-            .frame(minWidth: 300, maxWidth: 600, minHeight: 600, maxHeight: .infinity)
-    }
+//    private var codeEditor: some View {
+//        JSONObjectView(object: $jsonViewModel.jsonObject)
+//            .frame(minWidth: 300, maxWidth: 600, minHeight: 600, maxHeight: .infinity)
+//    }
     
 }
 

@@ -11,7 +11,12 @@ struct JSONRow: Identifiable, Hashable {
 
     let id = UUID()
 
-    var key: String
+    var key: String?
     var value: JSONValue
+    
+    init(key: String? = nil, value: JSONValue) {
+        self.key = key
+        self.value = value
+    }
 
 }

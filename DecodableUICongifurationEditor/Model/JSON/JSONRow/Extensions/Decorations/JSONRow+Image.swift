@@ -1,5 +1,5 @@
 //
-//  JSONValue+Image.swift
+//  JSONRow+Image.swift
 //  DecodableUICongifurationEditor
 //
 //  Created by Vsevolod Pavlovskyi on 16.05.2022.
@@ -7,10 +7,10 @@
 
 import Foundation
 
-extension JSONValue {
+extension JSONRow {
     
     var imageSystemName: String {
-        switch self {
+        switch value {
         case .object:
             return "curlybraces"
 
