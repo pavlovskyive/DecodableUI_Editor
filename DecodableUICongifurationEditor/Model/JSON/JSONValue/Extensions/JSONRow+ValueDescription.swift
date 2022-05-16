@@ -25,7 +25,7 @@ extension JSONRow {
                     guard let key = row.key else {
                         return nil
                     }
-                    return "\(key): \(row.typeDescription)"
+                    return "\(key): \(row.value.typeDescription)"
                 }
                 .joined(separator: ", ")
 
@@ -37,7 +37,7 @@ extension JSONRow {
         case .array(let values):
             var innerString = values
                 .prefix(Constants.maxArrayInnerCount)
-                .map(\.typeDescription)
+                .map(\.value.typeDescription)
                 .joined(separator: ", ")
             
             if values.count > Constants.maxArrayInnerCount {
