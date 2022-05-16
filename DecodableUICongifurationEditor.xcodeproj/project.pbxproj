@@ -25,8 +25,7 @@
 		79519CB228300BE400534D8B /* JSONValue+JSONString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79519CB128300BE400534D8B /* JSONValue+JSONString.swift */; };
 		79519CB428301A5200534D8B /* JSONHierarchy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79519CB328301A5200534D8B /* JSONHierarchy.swift */; };
 		79519CB82831697B00534D8B /* NestedListContainable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79519CB72831697B00534D8B /* NestedListContainable.swift */; };
-		79519CBB28316A5500534D8B /* SideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79519CBA28316A5500534D8B /* SideView.swift */; };
-		79519CBD28316D3F00534D8B /* JSONValue+NestedListContainable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79519CBC28316D3F00534D8B /* JSONValue+NestedListContainable.swift */; };
+		79519CBB28316A5500534D8B /* NestedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79519CBA28316A5500534D8B /* NestedList.swift */; };
 		79519CBF283172B600534D8B /* StackNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79519CBE283172B600534D8B /* StackNavigationView.swift */; };
 		79519CC12831A76B00534D8B /* JSONValue+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79519CC02831A76B00534D8B /* JSONValue+Image.swift */; };
 		79519CC32831A8DF00534D8B /* JSONValue+CustomStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79519CC22831A8DF00534D8B /* JSONValue+CustomStringConvertible.swift */; };
@@ -36,6 +35,10 @@
 		79519CD02831B0CD00534D8B /* JSONValue+Find.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79519CCF2831B0CD00534D8B /* JSONValue+Find.swift */; };
 		79519CD52831B18000534D8B /* JSONHierarchyRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79519CD42831B18000534D8B /* JSONHierarchyRow.swift */; };
 		79519CD82831B2BE00534D8B /* AppFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79519CD72831B2BE00534D8B /* AppFont.swift */; };
+		79519CDD283251D000534D8B /* JSONValueEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79519CDC283251D000534D8B /* JSONValueEditor.swift */; };
+		79519CDF283251DE00534D8B /* JSONCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79519CDE283251DE00534D8B /* JSONCell.swift */; };
+		79519CE1283252F100534D8B /* JSONValue+NestedListContainable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79519CE0283252F100534D8B /* JSONValue+NestedListContainable.swift */; };
+		79519CE32832539900534D8B /* JSONValue+Mutating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79519CE22832539900534D8B /* JSONValue+Mutating.swift */; };
 		795707762822AC8D0038C019 /* AppColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795707752822AC8D0038C019 /* AppColor.swift */; };
 		795FD34528241ED4002151F8 /* DecodableUI in Frameworks */ = {isa = PBXBuildFile; productRef = 795FD34428241ED4002151F8 /* DecodableUI */; };
 		79E17861282542D4002D65F3 /* TextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E17860282542D4002D65F3 /* TextEditor.swift */; };
@@ -62,8 +65,7 @@
 		79519CB128300BE400534D8B /* JSONValue+JSONString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONValue+JSONString.swift"; sourceTree = "<group>"; };
 		79519CB328301A5200534D8B /* JSONHierarchy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONHierarchy.swift; sourceTree = "<group>"; };
 		79519CB72831697B00534D8B /* NestedListContainable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NestedListContainable.swift; sourceTree = "<group>"; };
-		79519CBA28316A5500534D8B /* SideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideView.swift; sourceTree = "<group>"; };
-		79519CBC28316D3F00534D8B /* JSONValue+NestedListContainable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONValue+NestedListContainable.swift"; sourceTree = "<group>"; };
+		79519CBA28316A5500534D8B /* NestedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NestedList.swift; sourceTree = "<group>"; };
 		79519CBE283172B600534D8B /* StackNavigationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackNavigationView.swift; sourceTree = "<group>"; };
 		79519CC02831A76B00534D8B /* JSONValue+Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONValue+Image.swift"; sourceTree = "<group>"; };
 		79519CC22831A8DF00534D8B /* JSONValue+CustomStringConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONValue+CustomStringConvertible.swift"; sourceTree = "<group>"; };
@@ -73,6 +75,10 @@
 		79519CCF2831B0CD00534D8B /* JSONValue+Find.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONValue+Find.swift"; sourceTree = "<group>"; };
 		79519CD42831B18000534D8B /* JSONHierarchyRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONHierarchyRow.swift; sourceTree = "<group>"; };
 		79519CD72831B2BE00534D8B /* AppFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFont.swift; sourceTree = "<group>"; };
+		79519CDC283251D000534D8B /* JSONValueEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONValueEditor.swift; sourceTree = "<group>"; };
+		79519CDE283251DE00534D8B /* JSONCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONCell.swift; sourceTree = "<group>"; };
+		79519CE0283252F100534D8B /* JSONValue+NestedListContainable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSONValue+NestedListContainable.swift"; sourceTree = "<group>"; };
+		79519CE22832539900534D8B /* JSONValue+Mutating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONValue+Mutating.swift"; sourceTree = "<group>"; };
 		795707752822AC8D0038C019 /* AppColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColor.swift; sourceTree = "<group>"; };
 		795FD34228241EC7002151F8 /* DecodableUI */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = DecodableUI; path = ../DecodableUI; sourceTree = "<group>"; };
 		79E17860282542D4002D65F3 /* TextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditor.swift; sourceTree = "<group>"; };
@@ -176,6 +182,8 @@
 				79519CA9282FD95A00534D8B /* JSONObjectView.swift */,
 				79519CA7282FD90300534D8B /* JSONRowView.swift */,
 				79519CAB282FFB4D00534D8B /* JSONNestedObjectView.swift */,
+				79519CDC283251D000534D8B /* JSONValueEditor.swift */,
+				79519CDE283251DE00534D8B /* JSONCell.swift */,
 			);
 			path = JSON;
 			sourceTree = "<group>";
@@ -194,7 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				79519CB92831697F00534D8B /* Model */,
-				79519CBA28316A5500534D8B /* SideView.swift */,
+				79519CBA28316A5500534D8B /* NestedList.swift */,
 			);
 			path = SideView;
 			sourceTree = "<group>";
@@ -234,7 +242,6 @@
 				79519CCA2831B07A00534D8B /* JSONValue+Identifiable.swift */,
 				79519C9D282FD80100534D8B /* JSONValue+CaseIterable.swift */,
 				79519CA1282FD86800534D8B /* JSONValue+AssociatedValues.swift */,
-				79519CBC28316D3F00534D8B /* JSONValue+NestedListContainable.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -262,7 +269,9 @@
 		79519CD92831B93A00534D8B /* Functional */ = {
 			isa = PBXGroup;
 			children = (
+				79519CE0283252F100534D8B /* JSONValue+NestedListContainable.swift */,
 				79519CCF2831B0CD00534D8B /* JSONValue+Find.swift */,
+				79519CE22832539900534D8B /* JSONValue+Mutating.swift */,
 			);
 			path = Functional;
 			sourceTree = "<group>";
@@ -364,11 +373,12 @@
 				79519CC32831A8DF00534D8B /* JSONValue+CustomStringConvertible.swift in Sources */,
 				79519CA2282FD86800534D8B /* JSONValue+AssociatedValues.swift in Sources */,
 				79519CAA282FD95A00534D8B /* JSONObjectView.swift in Sources */,
-				79519CBD28316D3F00534D8B /* JSONValue+NestedListContainable.swift in Sources */,
+				79519CDF283251DE00534D8B /* JSONCell.swift in Sources */,
 				79519C9C282FD79C00534D8B /* JSONValue.swift in Sources */,
 				79519CB228300BE400534D8B /* JSONValue+JSONString.swift in Sources */,
-				79519CBB28316A5500534D8B /* SideView.swift in Sources */,
+				79519CBB28316A5500534D8B /* NestedList.swift in Sources */,
 				79E17861282542D4002D65F3 /* TextEditor.swift in Sources */,
+				79519CDD283251D000534D8B /* JSONValueEditor.swift in Sources */,
 				79519CC52831ACEE00534D8B /* JSONValue+TypeDesription.swift in Sources */,
 				79519CC92831B05700534D8B /* JSONValue+Hashable.swift in Sources */,
 				79519CCB2831B07A00534D8B /* JSONValue+Identifiable.swift in Sources */,
@@ -379,12 +389,14 @@
 				79519C9E282FD80100534D8B /* JSONValue+CaseIterable.swift in Sources */,
 				79519C9A282FD78200534D8B /* JSONRow.swift in Sources */,
 				79419442282179FC00DB9FA3 /* ContentView.swift in Sources */,
+				79519CE1283252F100534D8B /* JSONValue+NestedListContainable.swift in Sources */,
 				79519CD82831B2BE00534D8B /* AppFont.swift in Sources */,
 				79519C94282FD39600534D8B /* NumberedPlainTextField.swift in Sources */,
 				79519CB028300AEF00534D8B /* JSONRow+JSONString.swift in Sources */,
 				79519CD52831B18000534D8B /* JSONHierarchyRow.swift in Sources */,
 				79419440282179FC00DB9FA3 /* DecodableUICongifurationEditorApp.swift in Sources */,
 				79519CD02831B0CD00534D8B /* JSONValue+Find.swift in Sources */,
+				79519CE32832539900534D8B /* JSONValue+Mutating.swift in Sources */,
 				79519CB428301A5200534D8B /* JSONHierarchy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

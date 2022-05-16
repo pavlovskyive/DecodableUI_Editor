@@ -135,7 +135,18 @@ class JSONModel: ObservableObject {
     }
     
     func rowForId(_ id: Int) -> JSONRow? {
-        jsonObject.findRow(withValueId: id)
+        jsonObject.nestedRow(withValueId: id)
+    }
+    
+    func deleteSelected() {
+        guard let id = selectedId else {
+            return
+        }
+        guard let updatedObject = jsonObject.removingValue(with: id) else {
+            jsonObject = .object([])
+            return
+        }
+        jsonObject = updatedObject
     }
     
 }
@@ -166,7 +177,6 @@ struct ContentView: View {
         .onAppear {
             uiProvider.subscribeToInput(jsonViewModel.jsonPublisher)
         }
-        .background(Color("Editor"))
         .environmentObject(jsonViewModel)
 
     }

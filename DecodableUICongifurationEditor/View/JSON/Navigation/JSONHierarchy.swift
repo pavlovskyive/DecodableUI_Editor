@@ -14,13 +14,19 @@ struct JSONHierarchy: View {
     
     var body: some View {
         NavigationView {
-            SideView(list: [jsonModel.jsonObject], content: link(to:))
+            NestedList(list: [jsonModel.jsonObject], content: link(to:))
+        }
+        .deleteDisabled(jsonModel.selectedId == nil)
+        .onDeleteCommand {
+            jsonModel.deleteSelected()
         }
         .toolbar {
             ToolbarItem(placement: .navigation) {
-                Button(action: toggleSidebar, label: {
+                Button {
+                    toggleSidebar()
+                } label: {
                     Image(systemName: "sidebar.leading")
-                })
+                }
             }
         }
     }
@@ -32,6 +38,14 @@ struct JSONHierarchy: View {
         } label: {
             JSONHierarchyRow(value: value)
         }
+        .deleteDisabled(false)
+        .contextMenu {
+            Button("Delete", action: handleDeleteCommand)
+        }
+    }
+    
+    private func handleDeleteCommand() {
+        print("delete command")
     }
     
     private func toggleSidebar() {

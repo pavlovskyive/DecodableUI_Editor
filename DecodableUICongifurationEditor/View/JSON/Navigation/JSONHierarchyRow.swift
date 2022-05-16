@@ -23,7 +23,7 @@ struct JSONHierarchyRow: View {
    
     var body: some View {
         Label {
-            HStack(spacing: 5) {
+            HStack(alignment: .top, spacing: 5) {
                 if let key = jsonModel.rowForId(value.id)?.key {
                     Text(key)
                 }
@@ -37,7 +37,7 @@ struct JSONHierarchyRow: View {
         } icon: {
             Image(systemName: value.imageSystemName)
         }
-        .foregroundColor(AppColor.editorText)
+        .foregroundColor(AppColor.sidebarTextColor)
         .font(AppFont.sideBar)
     }
     

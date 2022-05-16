@@ -55,7 +55,7 @@ struct JSONObjectView: View {
         } label: {
             Text("add row")
                 .font(.system(size: 16, weight: .light, design: .monospaced))
-                .foregroundColor(AppColor.editorText)
+                .foregroundColor(AppColor.primaryText)
         }
         .padding()
         .buttonStyle(.plain)

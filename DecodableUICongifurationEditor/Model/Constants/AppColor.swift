@@ -9,11 +9,12 @@ import SwiftUI
 
 enum AppColor {
     
-    static let editorBackround = Color("Editor")
-    
+    static let editorBackround = Color("Background")
     static let editorText = Color("Text")
-    
-    static let editorInsertion = Color("InsertionPoint")
+    static let editorInsertion = Color("Text").opacity(0.8)
+
+    static let primaryText = Color("Text")
+    static let sidebarTextColor = Color.primary
     
 }
 
