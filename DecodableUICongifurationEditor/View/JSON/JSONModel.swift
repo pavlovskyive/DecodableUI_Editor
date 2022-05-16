@@ -54,7 +54,7 @@ class JSONModel: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
     
     init() {
-        resetSelection()
+        selectedId = rootObject.id
     }
     
     var jsonPublisher: AnyPublisher<String, Never> {
@@ -66,19 +66,27 @@ class JSONModel: ObservableObject {
     }
     
     func create(after id: UUID) {
-        rootObject.create(after: id)
+        let newRow = rootObject.create(after: id)
+        DispatchQueue.main.async { [weak self] in
+            self?.selectedId = newRow?.id
+        }
     }
     
     func delete(with id: UUID) {
         guard rootObject.id != id else {
             rootObject.value = .object([])
-            resetSelection()
             return
         }
+
+        let selectedId = selectedId
+        let previousRow = rootObject.previousWideRow(for: id)
+
         rootObject.removeRow(with: id)
         
         if selectedId == id {
-            resetSelection()
+            DispatchQueue.main.async { [weak self] in
+                self?.selectedId = previousRow?.id
+            }
         }
     }
 
@@ -88,7 +96,6 @@ class JSONModel: ObservableObject {
         }
         
         delete(with: id)
-        selectedId = nil
     }
     
     func setRow(_ row: JSONRow) {
@@ -97,15 +104,6 @@ class JSONModel: ObservableObject {
     
     func getRow(with id: UUID) -> JSONRow? {
         rootObject.getRow(with: id)
-    }
-    
-    private func resetSelection() {
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else {
-                return
-            }
-            self.selectedId = self.rootObject.id
-        }
     }
     
 }

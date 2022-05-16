@@ -55,6 +55,7 @@ struct JSONHierarchy: View {
                     jsonModel.create(after: row.id)
                 }
                 .keyboardShortcut(KeyboardShortcut(.init("o"), modifiers: [.command]))
+
                 Button("Delete") {
                     jsonModel.delete(with: row.id)
                 }

@@ -110,4 +110,18 @@ extension JSONRow {
         return false
     }
     
+    func previousWideRow(for id: UUID) -> JSONRow? {
+        for (index, row) in nestedRows.enumerated() {
+            if row.id == id {
+                let index = index - 1
+                return index >= 0 ? nestedRows[index] : self
+            }
+            if let result = row.previousWideRow(for: id) {
+                return result
+            }
+        }
+        
+        return nil
+    }
+    
 }

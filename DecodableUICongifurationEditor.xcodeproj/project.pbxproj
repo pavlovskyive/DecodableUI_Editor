@@ -19,6 +19,7 @@
 		794EE1752832880E00E1D5DC /* JSONModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794EE1742832880E00E1D5DC /* JSONModel.swift */; };
 		794EE1772832B2C100E1D5DC /* JSONRowEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794EE1762832B2C100E1D5DC /* JSONRowEditor.swift */; };
 		794EE1792832B42900E1D5DC /* JSONValue+CaseIterable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794EE1782832B42900E1D5DC /* JSONValue+CaseIterable.swift */; };
+		794EE17C2832ED2600E1D5DC /* Binding+Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794EE17B2832ED2600E1D5DC /* Binding+Optional.swift */; };
 		79519C8D282F24A200534D8B /* PlainTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79519C8C282F24A200534D8B /* PlainTextField.swift */; };
 		79519C94282FD39600534D8B /* NumberedPlainTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79519C93282FD39600534D8B /* NumberedPlainTextField.swift */; };
 		79519C9A282FD78200534D8B /* JSONRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79519C99282FD78200534D8B /* JSONRow.swift */; };
@@ -54,6 +55,7 @@
 		794EE1742832880E00E1D5DC /* JSONModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONModel.swift; sourceTree = "<group>"; };
 		794EE1762832B2C100E1D5DC /* JSONRowEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONRowEditor.swift; sourceTree = "<group>"; };
 		794EE1782832B42900E1D5DC /* JSONValue+CaseIterable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONValue+CaseIterable.swift"; sourceTree = "<group>"; };
+		794EE17B2832ED2600E1D5DC /* Binding+Optional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+Optional.swift"; sourceTree = "<group>"; };
 		79519C8C282F24A200534D8B /* PlainTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlainTextField.swift; sourceTree = "<group>"; };
 		79519C93282FD39600534D8B /* NumberedPlainTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberedPlainTextField.swift; sourceTree = "<group>"; };
 		79519C99282FD78200534D8B /* JSONRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONRow.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 		7941943E282179FC00DB9FA3 /* DecodableUICongifurationEditor */ = {
 			isa = PBXGroup;
 			children = (
+				794EE17A2832ED0400E1D5DC /* Helpers */,
 				79519C97282FD75800534D8B /* Model */,
 				79519C96282FD74500534D8B /* View */,
 				7941943F282179FC00DB9FA3 /* DecodableUICongifurationEditorApp.swift */,
@@ -171,6 +174,14 @@
 				794EE1782832B42900E1D5DC /* JSONValue+CaseIterable.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		794EE17A2832ED0400E1D5DC /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				794EE17B2832ED2600E1D5DC /* Binding+Optional.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		79519C95282FD73500534D8B /* TextInputView */ = {
@@ -376,6 +387,7 @@
 				79519CA2282FD86800534D8B /* JSONValue+AssociatedValues.swift in Sources */,
 				79519C9C282FD79C00534D8B /* JSONValue.swift in Sources */,
 				79519CB228300BE400534D8B /* JSONValue+JSONString.swift in Sources */,
+				794EE17C2832ED2600E1D5DC /* Binding+Optional.swift in Sources */,
 				79519CBB28316A5500534D8B /* NestedList.swift in Sources */,
 				79E17861282542D4002D65F3 /* TextEditor.swift in Sources */,
 				79519CC52831ACEE00534D8B /* JSONRow+TypeDesription.swift in Sources */,
