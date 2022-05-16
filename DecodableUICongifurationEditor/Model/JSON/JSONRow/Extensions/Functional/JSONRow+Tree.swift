@@ -10,7 +10,7 @@ import Foundation
 extension JSONRow {
     
     @discardableResult
-    mutating func removingRow(with id: UUID) -> JSONRow? {
+    mutating func removeRow(with id: UUID) -> JSONRow? {
         guard self.id != id else {
             return nil
         }
@@ -19,7 +19,7 @@ extension JSONRow {
         case let .object(rows):
             self.value.objectValues = rows.compactMap { row -> JSONRow? in
                 var mutable = row
-                guard let updatedRow = mutable.removingRow(with: id) else {
+                guard let updatedRow = mutable.removeRow(with: id) else {
                     return nil
                 }
                 return updatedRow
@@ -27,7 +27,7 @@ extension JSONRow {
         case let .array(values):
             self.value.arrayValues = values.compactMap { row -> JSONRow? in
                 var mutable = row
-                guard let updatedRow = mutable.removingRow(with: id) else {
+                guard let updatedRow = mutable.removeRow(with: id) else {
                     return nil
                 }
                 return updatedRow
@@ -37,6 +37,77 @@ extension JSONRow {
         }
         
         return self
+    }
+    
+    @discardableResult
+    mutating func create(after id: UUID) -> JSONRow? {
+        var newRow = JSONRow(value: .null)
+        if case .object = value {
+            newRow.key = "key"
+        }
+
+        if self.id == id {
+            switch value {
+            case .object, .array:
+                nestedRows.insert(newRow, at: 0)
+                return newRow
+            default:
+                break
+            }
+        }
+
+        for (index, row) in nestedRows.enumerated() {
+            switch row.value {
+            case .object, .array:
+                break
+            default:
+                if row.id == id {
+                    nestedRows.insert(newRow, at: index + 1)
+                    return newRow
+                }
+            }
+            
+            var mutable = row
+            
+            if let result = mutable.create(after: id) {
+                nestedRows[index] = mutable
+                return result
+            }
+        }
+        
+        return nil
+    }
+    
+    func getRow(with id: UUID) -> JSONRow? {
+        guard self.id != id else {
+            return self
+        }
+        
+        for row in nestedRows {
+            if let result = row.getRow(with: id) {
+                return result
+            }
+        }
+        
+        return nil
+    }
+    
+    @discardableResult
+    mutating func setRow(_ row: JSONRow) -> Bool {
+        guard self.id != row.id else {
+            key = row.key
+            value = row.value
+            return true
+        }
+        
+        for (index, nestedRow) in nestedRows.enumerated() {
+            var mutable = nestedRow
+            if mutable.setRow(row) == true {
+                nestedRows[index] = mutable
+                return true
+            }
+        }
+        return false
     }
     
 }

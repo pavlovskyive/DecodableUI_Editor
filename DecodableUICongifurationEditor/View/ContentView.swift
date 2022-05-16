@@ -14,19 +14,7 @@ class DecodableUIProvider: ObservableObject {
     private let viewsService: DecodableViewsService
     
     @Published var view: AnyView? = AnyView(ProgressView().progressViewStyle(.circular))
-    @Published var input =
-    """
-    {
-    \t"type": "Label",
-    \t"parameters": {
-    \t\t"text": "Sample text 1",
-    \t\t"fontColor": "A1A1B2",
-    \t\t"lineLimit": 1,
-    \t\t"padding": 15,
-    \t\t"cornerRadius": 8
-    \t}
-    }
-    """
+    var jsonSubject = PassthroughSubject<String, Never>()
     
     @Published var configuration: DecodableViewConfiguration?
     
@@ -56,17 +44,8 @@ class DecodableUIProvider: ObservableObject {
             .store(in: &cancellables)
     }
     
-    func subscribeToInput(_ inputPublisher: AnyPublisher<String, Never>) {
-        inputPublisher
-            .sink { [weak self] input in
-                print(input)
-                self?.input = input
-            }
-            .store(in: &cancellables)
-    }
-    
     private var configurationPublisher: AnyPublisher<DecodableViewConfiguration?, Never> {
-        $input
+        jsonSubject
             .debounce(for: .seconds(1), scheduler: DispatchQueue.main)
             .removeDuplicates()
             .compactMap {
@@ -82,87 +61,6 @@ class DecodableUIProvider: ObservableObject {
 
 }
 
-class JSONModel: ObservableObject {
-    
-    @Published var selectedId: UUID?
-    @Published var rootObject = JSONRow(
-        value: .object([
-            JSONRow(
-                key: "type",
-                value: .string("Stack")
-            ),
-            JSONRow(
-                key: "isAvailable",
-                value: .bool(false)
-            ),
-            JSONRow(
-                key: "parameters",
-                value: .object([
-                    JSONRow(key: "direction", value: .string("vertical")),
-                    JSONRow(
-                        key: "elements",
-                        value: .array([
-                            JSONRow(
-                                value: .object([
-                                    JSONRow(key: "type", value: .string("Label")),
-                                    JSONRow(key: "parameters", value: .object([
-                                        JSONRow(key: "text", value: .string("Some text 1"))
-                                    ]))
-                                ])
-                            ),
-                            JSONRow(
-                                value: .object([
-                                    JSONRow(key: "type", value: .string("Image")),
-                                    JSONRow(key: "parameters", value: .object([
-                                        JSONRow(key: "systemName", value: .string("photo"))
-                                    ]))
-                                ])
-                            )
-                        ])
-                    )
-                ])
-            )
-        ])
-    )
-    
-    private var cancellables = Set<AnyCancellable>()
-    
-    init() {
-        resetSelection()
-    }
-    
-    var jsonPublisher: AnyPublisher<String, Never> {
-        $rootObject
-            .map {
-                $0.jsonString
-            }
-            .eraseToAnyPublisher()
-    }
-    
-    func delete(with id: UUID) {
-        let row = rootObject.removingRow(with: id)
-        rootObject = row ?? .init(value: .object([]))
-        
-        if selectedId == id {
-            resetSelection()
-        }
-    }
-    
-    func deleteSelected() {
-        guard let id = selectedId else {
-            return
-        }
-        
-        delete(with: id)
-        selectedId = nil
-    }
-    
-    private func resetSelection() {
-        selectedId = rootObject.id
-    }
-    
-}
-
 struct ContentView: View {
 
     @StateObject var uiProvider = DecodableUIProvider(viewTypes: [
@@ -171,11 +69,9 @@ struct ContentView: View {
         "Stack": StackView<DefaultViewModifier>.self
     ])
     
-    @StateObject var jsonViewModel = JSONModel()
-    
     var body: some View {
         HStack {
-            JSONHierarchy()
+            JSONEditor(jsonSubject: uiProvider.jsonSubject)
             Group {
                 uiProvider.view
                     .animation(.easeInOut)
@@ -186,17 +82,8 @@ struct ContentView: View {
             .cornerRadius(40)
             .padding()
         }
-        .onAppear {
-            uiProvider.subscribeToInput(jsonViewModel.jsonPublisher)
-        }
-        .environmentObject(jsonViewModel)
 
     }
-    
-//    private var codeEditor: some View {
-//        JSONObjectView(object: $jsonViewModel.jsonObject)
-//            .frame(minWidth: 300, maxWidth: 600, minHeight: 600, maxHeight: .infinity)
-//    }
     
 }
 

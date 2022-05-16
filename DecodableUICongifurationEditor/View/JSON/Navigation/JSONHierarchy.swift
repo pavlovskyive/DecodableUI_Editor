@@ -21,6 +21,7 @@ struct JSONHierarchy: View {
         .onDeleteCommand {
             jsonModel.deleteSelected()
         }
+        .keyboardShortcut(KeyboardShortcut(.delete, modifiers: []))
         .toolbar {
             ToolbarItem(placement: .navigation) {
                 Button {
@@ -32,16 +33,32 @@ struct JSONHierarchy: View {
         }
     }
     
+    @ViewBuilder
     private func link(to row: JSONRow) -> some View {
-        NavigationLink(tag: row.id, selection: $jsonModel.selectedId) {
-            // INFO: Temp
-            Text("Detailed view for element: \(row.key ?? "") \(row.typeDescription)")
-        } label: {
-            JSONHierarchyRow(row: row)
+        let rowBinding = Binding {
+            jsonModel.getRow(with: row.id)
+        } set: {
+            guard let row = $0 else {
+                return
+            }
+            jsonModel.setRow(row)
         }
-        .contextMenu {
-            Button("Delete") {
-                jsonModel.delete(with: row.id)
+        
+        if let rowBinding = rowBinding.unwrap() {
+            NavigationLink(tag: row.id, selection: $jsonModel.selectedId) {
+                JSONRowEditor(binding: rowBinding)
+            } label: {
+                JSONHierarchyRow(row: row)
+            }
+            .contextMenu {
+                Button("New") {
+                    jsonModel.create(after: row.id)
+                }
+                .keyboardShortcut(KeyboardShortcut(.init("o"), modifiers: [.command]))
+                Button("Delete") {
+                    jsonModel.delete(with: row.id)
+                }
+                .keyboardShortcut(KeyboardShortcut(.delete, modifiers: []))
             }
         }
     }
