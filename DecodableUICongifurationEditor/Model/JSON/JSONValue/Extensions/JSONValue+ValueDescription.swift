@@ -1,5 +1,5 @@
 //
-//  JSONRow+CustomStringConvertible.swift
+//  JSONValue+CustomStringConvertible.swift
 //  DecodableUICongifurationEditor
 //
 //  Created by Vsevolod Pavlovskyi on 16.05.2022.

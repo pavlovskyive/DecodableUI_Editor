@@ -100,37 +100,6 @@ extension JSONRow {
         return nil
     }
     
-    func getRow(with id: UUID) -> JSONRow? {
-        guard self.id != id else {
-            return self
-        }
-        
-        for row in nestedRows {
-            if let result = row.getRow(with: id) {
-                return result
-            }
-        }
-        
-        return nil
-    }
-    
-    @discardableResult
-    mutating func setRow(_ row: JSONRow) -> Bool {
-        guard self.id != row.id else {
-            self = row
-            return true
-        }
-        
-        for (index, nestedRow) in nestedRows.enumerated() {
-            var mutable = nestedRow
-            if mutable.setRow(row) == true {
-                nestedRows[index] = mutable
-                return true
-            }
-        }
-        return false
-    }
-    
     func previousWideRow(for id: UUID) -> JSONRow? {
         for (index, row) in nestedRows.enumerated() {
             if row.id == id {

@@ -14,8 +14,16 @@ struct JSONHierarchy: View {
     
     var body: some View {
         NavigationView {
-            NestedList(list: [jsonModel.rootObject]) { row in
-                link(to: row)
+            HierarchyList(
+                rootElement: $jsonModel.rootObject,
+                children: \.nestedRows
+            ) { $row in
+                link(to: $row)
+                
+            } header: {
+                Text("Hierarchy")
+                    .font(.system(size: 12, weight: .semibold, design: .monospaced))
+                    .foregroundColor(.blue.opacity(0.8))
             }
         }
         .onDeleteCommand {
@@ -33,35 +41,24 @@ struct JSONHierarchy: View {
     }
     
     @ViewBuilder
-    private func link(to row: JSONRow) -> some View {
-        let rowBinding = Binding {
-            jsonModel.getRow(with: row.id)
-        } set: {
-            guard let row = $0 else {
-                return
-            }
-            jsonModel.setRow(row)
+    private func link(to row: Binding<JSONRow>) -> some View {
+        NavigationLink(tag: row.wrappedValue.id, selection: $jsonModel.selectedId) {
+            JSONRowEditor(row: row)
+        } label: {
+            JSONHierarchyRow(row: row.wrappedValue)
         }
-        
-        rowBinding.unwrap().map { $row in
-            NavigationLink(tag: row.id, selection: $jsonModel.selectedId) {
-                JSONRowEditor(row: $row)
-            } label: {
-                JSONHierarchyRow(row: row)
+        .deleteDisabled(jsonModel.isRootObject(row.wrappedValue))
+        .contextMenu {
+            Button("New") {
+                jsonModel.create(after: row.wrappedValue.id)
             }
-            .deleteDisabled(jsonModel.isRootObject(row))
-            .contextMenu {
-                Button("New") {
-                    jsonModel.create(after: row.id)
-                }
-                .keyboardShortcut(KeyboardShortcut(.init("o"), modifiers: [.command]))
+            .keyboardShortcut(KeyboardShortcut(.init("o"), modifiers: [.command]))
 
-                Button("Delete") {
-                    jsonModel.delete(with: row.id)
-                }
-                .disabled(jsonModel.isRootObject(row))
-                .keyboardShortcut(KeyboardShortcut(.delete, modifiers: []))
+            Button("Delete") {
+                jsonModel.delete(with: row.wrappedValue.id)
             }
+            .disabled(jsonModel.isRootObject(row.wrappedValue))
+            .keyboardShortcut(KeyboardShortcut(.delete, modifiers: []))
         }
     }
     

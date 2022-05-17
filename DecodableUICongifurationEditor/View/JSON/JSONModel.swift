@@ -98,17 +98,6 @@ class JSONModel: ObservableObject {
         delete(with: id)
     }
     
-    func setRow(_ row: JSONRow) {
-        rootObject.setRow(row)
-        if selectedId == row.id {
-            setSelected(id: row.id)
-        }
-    }
-    
-    func getRow(with id: UUID) -> JSONRow? {
-        rootObject.getRow(with: id)
-    }
-    
     private func setSelected(id: UUID?) {
         if selectedId != id {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in

@@ -16,13 +16,9 @@ struct DecodableUICongifurationEditorApp: App {
         }
         .commands {
             SidebarCommands()
-//            CommandGroup(replacing: CommandGroupPlacement.pasteboard) {
-//                Button("Delete", action: {
-//                    print("lalala")
-//                })
-//                .keyboardShortcut(.delete, modifiers: [])
-//            }
         }
+//        .windowToolbarStyle(.unified)
+        .windowStyle(.hiddenTitleBar)
     }
 
 }
