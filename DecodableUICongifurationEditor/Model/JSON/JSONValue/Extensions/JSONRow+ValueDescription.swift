@@ -14,10 +14,10 @@ private enum Constants {
 
 }
 
-extension JSONRow {
+extension JSONValue {
 
     var valueDescription: String {
-        switch value {
+        switch self {
         case .object(let values):
             var innerString = values
                 .prefix(Constants.maxObjectInnerCount)

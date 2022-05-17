@@ -14,23 +14,3 @@ extension JSONRow: NestedValuesContainable {
     }
     
 }
-
-extension JSONRow {
-    
-    var nestedRows: [JSONRow] {
-        get {
-            value.arrayValues + value.objectValues
-        }
-        set {
-            switch value {
-            case .array:
-                value = .array(newValue)
-            case .object:
-                value = .object(newValue)
-            default:
-                return
-            }
-        }
-    }
-    
-}

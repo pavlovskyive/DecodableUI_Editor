@@ -9,6 +9,28 @@ import Foundation
 
 extension JSONRow {
     
+    var nestedRows: [JSONRow] {
+        get {
+            value.arrayValues + value.objectValues
+        }
+        set {
+            switch value {
+            case .array:
+                value = .array(newValue)
+            case .object:
+                value = .object(newValue)
+            default:
+                return
+            }
+        }
+    }
+    
+}
+
+// MARK: -CRUD
+
+extension JSONRow {
+    
     @discardableResult
     mutating func removeRow(with id: UUID) -> JSONRow? {
         guard self.id != id else {
@@ -95,8 +117,7 @@ extension JSONRow {
     @discardableResult
     mutating func setRow(_ row: JSONRow) -> Bool {
         guard self.id != row.id else {
-            key = row.key
-            value = row.value
+            self = row
             return true
         }
         

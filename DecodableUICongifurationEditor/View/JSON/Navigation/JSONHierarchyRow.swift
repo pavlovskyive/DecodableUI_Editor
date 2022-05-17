@@ -27,10 +27,10 @@ struct JSONHierarchyRow: View {
                 if let key = row.key {
                     Text(key)
                 }
-                Text(row.typeDescription)
+                Text(row.value.typeDescription)
                     .opacity(Constants.valueTypeOpacity)
                 
-                Text(row.valueDescription)
+                Text(row.value.valueDescription)
                     .opacity(Constants.valueDescriptionOpacity)
             }
             .padding(.leading, 5)
@@ -38,7 +38,7 @@ struct JSONHierarchyRow: View {
             Image(systemName: row.imageSystemName)
         }
         .foregroundColor(AppColor.sidebarTextColor)
-        .font(AppFont.sideBar)
+        .font(AppFont.sidebar)
     }
     
 }

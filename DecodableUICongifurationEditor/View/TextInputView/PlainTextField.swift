@@ -14,7 +14,7 @@ fileprivate enum Constants {
     static let textColor = AppColor.editorText.nsColor
     static let insertionPointColor = AppColor.editorInsertion.nsColor
     static let placeholderColor = AppColor.editorText.nsColor.withAlphaComponent(0.7)
-    static let font = NSFont.monospacedSystemFont(ofSize: 16, weight: .light)
+    static let font: NSFont = AppFont.nsEditor
     
 }
 

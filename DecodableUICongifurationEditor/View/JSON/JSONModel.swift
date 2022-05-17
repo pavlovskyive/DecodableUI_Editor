@@ -65,11 +65,13 @@ class JSONModel: ObservableObject {
             .eraseToAnyPublisher()
     }
     
+    func isRootObject(_ row: JSONRow) -> Bool {
+        rootObject.id == row.id
+    }
+    
     func create(after id: UUID) {
         let newRow = rootObject.create(after: id)
-        DispatchQueue.main.async { [weak self] in
-            self?.selectedId = newRow?.id
-        }
+        setSelected(id: newRow?.id)
     }
     
     func delete(with id: UUID) {
@@ -84,9 +86,7 @@ class JSONModel: ObservableObject {
         rootObject.removeRow(with: id)
         
         if selectedId == id {
-            DispatchQueue.main.async { [weak self] in
-                self?.selectedId = previousRow?.id
-            }
+            setSelected(id: previousRow?.id)
         }
     }
 
@@ -100,10 +100,23 @@ class JSONModel: ObservableObject {
     
     func setRow(_ row: JSONRow) {
         rootObject.setRow(row)
+        if selectedId == row.id {
+            setSelected(id: row.id)
+        }
     }
     
     func getRow(with id: UUID) -> JSONRow? {
         rootObject.getRow(with: id)
+    }
+    
+    private func setSelected(id: UUID?) {
+        if selectedId != id {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
+                withAnimation {
+                    self?.selectedId = id
+                }
+            }
+        }
     }
     
 }

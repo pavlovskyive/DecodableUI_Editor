@@ -70,15 +70,15 @@ struct ContentView: View {
     ])
     
     var body: some View {
-        HStack {
+        HStack(spacing: 0) {
             JSONEditor(jsonSubject: uiProvider.jsonSubject)
             Group {
                 uiProvider.view
                     .animation(.easeInOut)
                     .environment(\.colorScheme, .light)
+                    .frame(width: 300, height: 600)
+                    .background(Color.white)
             }
-            .frame(width: 300, height: 600)
-            .background(Color.white)
             .cornerRadius(40)
             .padding()
         }

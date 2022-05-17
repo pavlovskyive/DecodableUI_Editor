@@ -6,9 +6,15 @@
 //
 
 import SwiftUI
+import CoreText
 
 enum AppFont {
-    
-    static let sideBar = Font.system(size: 12, weight: .regular, design: .monospaced)
-    
+
+    static let sidebar = Font.system(size: 12, weight: .regular, design: .monospaced)
+
+    static let typePicker = Font.system(size: 14, weight: .light, design: .monospaced)
+
+    static let editor = Font.system(size: 16, weight: .light, design: .monospaced)
+    static let nsEditor = NSFont.monospacedSystemFont(ofSize: 16, weight: .light)
+
 }

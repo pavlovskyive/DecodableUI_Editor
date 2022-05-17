@@ -10,14 +10,8 @@ import Foundation
 extension JSONValue: CaseIterable {
     
     static var allCases: [JSONValue] {
-        [
-            .object([]),
-            .array([]),
-            .string(""),
-            .number(0),
-            .bool(false),
-            .null
-        ]
+        [.object([]), .array([]), .string(""),
+         .number(0), .bool(false), .null]
     }
     
 }
