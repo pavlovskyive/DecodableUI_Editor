@@ -8,7 +8,7 @@
 import SwiftUI
 import Combine
 
-struct TextEditor: NSViewRepresentable {
+struct TextView: NSViewRepresentable {
     
     @Binding var text: String
     
@@ -66,16 +66,16 @@ struct TextEditor: NSViewRepresentable {
     
 }
 
-extension TextEditor {
+extension TextView {
     
     class Coordinator: NSObject {
         
         private let openingCharacters: [Character] = ["{", "["]
         private let closingCharacters: [Character] = ["}", "]"]
         
-        private var parent: TextEditor
+        private var parent: TextView
         
-        init(_ parent: TextEditor) {
+        init(_ parent: TextView) {
             self.parent = parent
         }
         
@@ -83,7 +83,7 @@ extension TextEditor {
     
 }
 
-extension TextEditor.Coordinator: NSTextViewDelegate {
+extension TextView.Coordinator: NSTextViewDelegate {
     
     func textDidChange(_ notification: Notification) {
         guard let textView = notification.object as? NSTextView else {

@@ -20,10 +20,12 @@ where
     private let rowContent: (Binding<Element>) -> RowContent
     private let headerContent: () -> HeaderContent
     
+    @State private var isExpanded = true
+    
     var body: some View {
         List {
             headerContent()
-            DisclosureGroup {
+            DisclosureGroup(isExpanded: $isExpanded) {
                 recursiveView
             } label: {
                 rowContent($rootElement)

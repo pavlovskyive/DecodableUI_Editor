@@ -15,7 +15,7 @@ struct JSONRowEditor: View {
     @Binding var row: JSONRow
     
     private let columns = [GridItem(.fixed(100), alignment: .trailing),
-                           GridItem(.fixed(300), alignment: .leading)]
+                           GridItem(.fixed(250), alignment: .leading)]
     
     var body: some View {
         VStack(alignment: .leading, spacing: 15) {
@@ -25,15 +25,15 @@ struct JSONRowEditor: View {
                 if row.key != nil {
                     Text("Key:")
                         .opacity(row.key == nil ? 0.5 : 0.8)
-                        .frame(height: 40)
+                        .frame(height: 30)
                     JSONRowKeyField(key: $row.key)
                         .opacity(row.key == nil ? 0.5 : 1)
-                        .frame(height: 40)
+                        .frame(height: 30)
                 }
                 
                 Text("Type:")
                     .opacity(0.9)
-                    .frame(height: 40)
+                    .frame(height: 30)
                 
                 Picker(selection: $row.value.typeDescription, label: EmptyView()) {
                     ForEach(JSONValue.allCases.map(\.typeDescription), id: \.self) { type in
@@ -42,18 +42,19 @@ struct JSONRowEditor: View {
                 }
                 .frame(width: 100)
                 .disabled(jsonModel.isRootObject(row))
-                .frame(height: 40)
-               
+                .frame(height: 30)
+                
                 Text("Value:")
                     .opacity(0.9)
-                    .frame(height: 40)
+                    .frame(height: 30)
                 
                 valueEditor
-                    .frame(height: 40)
+                    .frame(minHeight: 30)
             }
             .padding(15)
             .background(Color.gray.opacity(0.1))
             .cornerRadius(8)
+
             Spacer()
         }
         .padding()

@@ -30,13 +30,12 @@
 		79519CB228300BE400534D8B /* JSONValue+JSONString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79519CB128300BE400534D8B /* JSONValue+JSONString.swift */; };
 		79519CB428301A5200534D8B /* JSONHierarchy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79519CB328301A5200534D8B /* JSONHierarchy.swift */; };
 		79519CBB28316A5500534D8B /* HierarchyList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79519CBA28316A5500534D8B /* HierarchyList.swift */; };
-		79519CBF283172B600534D8B /* StackNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79519CBE283172B600534D8B /* StackNavigationView.swift */; };
 		79519CC32831A8DF00534D8B /* JSONValue+ValueDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79519CC22831A8DF00534D8B /* JSONValue+ValueDescription.swift */; };
 		79519CD52831B18000534D8B /* JSONHierarchyRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79519CD42831B18000534D8B /* JSONHierarchyRow.swift */; };
 		79519CD82831B2BE00534D8B /* AppFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79519CD72831B2BE00534D8B /* AppFont.swift */; };
 		795707762822AC8D0038C019 /* AppColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795707752822AC8D0038C019 /* AppColor.swift */; };
 		795FD34528241ED4002151F8 /* DecodableUI in Frameworks */ = {isa = PBXBuildFile; productRef = 795FD34428241ED4002151F8 /* DecodableUI */; };
-		79E17861282542D4002D65F3 /* TextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E17860282542D4002D65F3 /* TextEditor.swift */; };
+		79E17861282542D4002D65F3 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E17860282542D4002D65F3 /* TextView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,13 +64,12 @@
 		79519CB128300BE400534D8B /* JSONValue+JSONString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONValue+JSONString.swift"; sourceTree = "<group>"; };
 		79519CB328301A5200534D8B /* JSONHierarchy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONHierarchy.swift; sourceTree = "<group>"; };
 		79519CBA28316A5500534D8B /* HierarchyList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HierarchyList.swift; sourceTree = "<group>"; };
-		79519CBE283172B600534D8B /* StackNavigationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackNavigationView.swift; sourceTree = "<group>"; };
 		79519CC22831A8DF00534D8B /* JSONValue+ValueDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONValue+ValueDescription.swift"; sourceTree = "<group>"; };
 		79519CD42831B18000534D8B /* JSONHierarchyRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONHierarchyRow.swift; sourceTree = "<group>"; };
 		79519CD72831B2BE00534D8B /* AppFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFont.swift; sourceTree = "<group>"; };
 		795707752822AC8D0038C019 /* AppColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColor.swift; sourceTree = "<group>"; };
 		795FD34228241EC7002151F8 /* DecodableUI */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = DecodableUI; path = ../DecodableUI; sourceTree = "<group>"; };
-		79E17860282542D4002D65F3 /* TextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditor.swift; sourceTree = "<group>"; };
+		79E17860282542D4002D65F3 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,7 +183,7 @@
 		79519C95282FD73500534D8B /* TextInputView */ = {
 			isa = PBXGroup;
 			children = (
-				79E17860282542D4002D65F3 /* TextEditor.swift */,
+				79E17860282542D4002D65F3 /* TextView.swift */,
 				79519C8C282F24A200534D8B /* PlainTextField.swift */,
 				79519C93282FD39600534D8B /* NumberedPlainTextField.swift */,
 			);
@@ -235,7 +233,6 @@
 		79519CB52830F32000534D8B /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
-				79519CBE283172B600534D8B /* StackNavigationView.swift */,
 				79519CB328301A5200534D8B /* JSONHierarchy.swift */,
 				79519CD42831B18000534D8B /* JSONHierarchyRow.swift */,
 			);
@@ -368,10 +365,9 @@
 				79519CB228300BE400534D8B /* JSONValue+JSONString.swift in Sources */,
 				794EE17C2832ED2600E1D5DC /* Binding+Optional.swift in Sources */,
 				79519CBB28316A5500534D8B /* HierarchyList.swift in Sources */,
-				79E17861282542D4002D65F3 /* TextEditor.swift in Sources */,
+				79E17861282542D4002D65F3 /* TextView.swift in Sources */,
 				79519C8D282F24A200534D8B /* PlainTextField.swift in Sources */,
 				794EE173283287F900E1D5DC /* JSONEditor.swift in Sources */,
-				79519CBF283172B600534D8B /* StackNavigationView.swift in Sources */,
 				79519C9A282FD78200534D8B /* JSONRow.swift in Sources */,
 				794EE1752832880E00E1D5DC /* JSONModel.swift in Sources */,
 				793781BE2833CB0500E01B15 /* JSONRowKeyField.swift in Sources */,

@@ -74,13 +74,15 @@ struct ContentView: View {
             JSONEditor(jsonSubject: uiProvider.jsonSubject)
             Group {
                 uiProvider.view
-                    .animation(.easeInOut)
-                    .environment(\.colorScheme, .light)
-                    .frame(width: 300, height: 600)
-                    .background(Color.white)
             }
+            .animation(nil)
+            .environment(\.colorScheme, .light)
+            .frame(width: 300, height: 600)
+            .background(Color.white)
             .cornerRadius(40)
+            .shadow(color: .gray.opacity(0.1), radius: 10, x: 0, y: 0)
             .padding()
+            .layoutPriority(1)
         }
 
     }

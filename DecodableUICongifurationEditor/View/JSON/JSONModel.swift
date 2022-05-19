@@ -100,11 +100,7 @@ class JSONModel: ObservableObject {
     
     private func setSelected(id: UUID?) {
         if selectedId != id {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
-                withAnimation {
-                    self?.selectedId = id
-                }
-            }
+            selectedId = id
         }
     }
     
